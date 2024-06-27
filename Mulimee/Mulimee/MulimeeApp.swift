@@ -12,8 +12,8 @@ struct MulimeeApp: App {
     var body: some Scene {
         WindowGroup {
             let waterInTake = WaterInTake(numberOfGlasses: 0, consumedLiters: 0)
-            let drinkViewModel = DrinkViewModel(waterInTake: waterInTake)
-            DrinkView(viewModel: drinkViewModel)
+            let drinkViewModel = WaterInTakeViewModel(waterInTake: waterInTake)
+            WaterInTakeView(viewModel: drinkViewModel)
         }
     }
 }

@@ -9,8 +9,9 @@ import Foundation
 import Observation
 
 @Observable
-class DrinkViewModel {
+final class WaterInTakeViewModel {
     private var waterInTake: WaterInTake
+    private(set) var waterDropViewModel: WaterDropViewModel
     
     var glassOfWater: String {
         "\(waterInTake.numberOfGlasses)잔"
@@ -22,6 +23,7 @@ class DrinkViewModel {
     
     init(waterInTake: WaterInTake) {
         self.waterInTake = waterInTake
+        self.waterDropViewModel = .init(waterWaveProgress: waterInTake.waterWaveProgress)
     }
     
     func drink() {
