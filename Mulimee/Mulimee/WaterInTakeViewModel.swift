@@ -29,6 +29,7 @@ final class DrinkViewModel {
     
     init(waterInTake: Drink) {
         self.waterInTake = waterInTake
+        self.waterDropViewModel = .init(waterWaveProgress: waterInTake.waterWaveProgress)
     }
     
     func drink() {
