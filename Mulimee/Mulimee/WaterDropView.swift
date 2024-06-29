@@ -32,30 +32,20 @@ struct WaterDropView: View {
                 // water drop
                 .overlay {
                     ZStack {
-                        Circle()
-                            .fill(.white.opacity(0.1))
-                            .frame(width: 15, height: 15)
-                            .offset(x: -20)
+                        GlareCircleView(sizeConstant: 15,
+                                      offset: .init(x: -20, y: 0))
                         
-                        Circle()
-                            .fill(.white.opacity(0.1))
-                            .frame(width: 15, height: 15)
-                            .offset(x: 40, y: 30)
+                        GlareCircleView(sizeConstant: 15,
+                                      offset: .init(x: 40, y: 30))
                         
-                        Circle()
-                            .fill(.white.opacity(0.1))
-                            .frame(width: 25, height: 25)
-                            .offset(x: -30, y: 80)
+                        GlareCircleView(sizeConstant: 25,
+                                      offset: .init(x: -30, y: 80))
                         
-                        Circle()
-                            .fill(.white.opacity(0.1))
-                            .frame(width: 25, height: 25)
-                            .offset(x: 50, y: 70)
+                        GlareCircleView(sizeConstant: 25,
+                                      offset: .init(x: 50, y: 70))
                         
-                        Circle()
-                            .fill(.white.opacity(0.1))
-                            .frame(width: 10, height: 10)
-                            .offset(x: 40, y: 100)
+                        GlareCircleView(sizeConstant: 10,
+                                      offset: .init(x: 40, y: 100))
                     }
                 }
                 .mask {
