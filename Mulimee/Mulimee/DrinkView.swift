@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DrinkView: View {
-    @State private(set) var viewModel: DrinkViewModel
+    @Environment(DrinkViewModel.self) private var viewModel
     
     var body: some View {
         VStack {
@@ -24,5 +24,7 @@ struct DrinkView: View {
 }
 
 #Preview {
-    DrinkView(viewModel: .init(waterInTake: .init(numberOfGlasses: 5, consumedLiters: 1.25)))
+    let viewModel = DrinkViewModel(waterInTake: .init(numberOfGlasses: 5, consumedLiters: 1.25))
+    return DrinkView()
+        .environment(viewModel)
 }

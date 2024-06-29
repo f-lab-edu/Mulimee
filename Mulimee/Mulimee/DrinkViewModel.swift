@@ -8,9 +8,16 @@
 import Foundation
 import Observation
 
+protocol DrinkViewModelProtocol {
+    var glassOfWater: String { get }
+    var liter: String { get }
+    
+    func drink()
+}
+
 @Observable
-class DrinkViewModel {
-    private var waterInTake: WaterInTake
+final class DrinkViewModel {
+    private(set) var waterInTake: Drink
     
     var glassOfWater: String {
         "\(waterInTake.numberOfGlasses)잔"
@@ -20,7 +27,7 @@ class DrinkViewModel {
         String(format: "%.2fL", waterInTake.consumedLiters)
     }
     
-    init(waterInTake: WaterInTake) {
+    init(waterInTake: Drink) {
         self.waterInTake = waterInTake
     }
     

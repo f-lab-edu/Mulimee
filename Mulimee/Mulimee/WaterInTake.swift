@@ -7,9 +7,17 @@
 
 import Foundation
 
-struct WaterInTake {
-    private(set) var numberOfGlasses: Int = 0
-    private(set) var consumedLiters: Double = 0
+protocol DrinkProtocol {
+    var numberOfGlasses: Int { get }
+    var consumedLiters: Double { get }
+    
+    mutating func setNumberOfGlasses(_ value: Int)
+    mutating func setConsumedLitters(_ value: Double)
+}
+
+struct Drink {
+    private(set) var numberOfGlasses: Int
+    private(set) var consumedLiters: Double
     
     mutating func setNumberOfGlasses(_ value: Int) {
         numberOfGlasses += value
