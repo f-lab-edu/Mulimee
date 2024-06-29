@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WaterInTake {
+struct Drink {
     private(set) var numberOfGlasses: Int = 0
     private(set) var consumedLiters: Double = 0
     var waterWaveProgress: CGFloat {

@@ -9,8 +9,8 @@ import Foundation
 import Observation
 
 @Observable
-final class WaterInTakeViewModel {
-    private var waterInTake: WaterInTake
+final class DrinkViewModel {
+    private var waterInTake: Drink
     private(set) var waterDropViewModel: WaterDropViewModel
     
     var glassOfWater: String {
@@ -21,7 +21,7 @@ final class WaterInTakeViewModel {
         String(format: "%.2fL", waterInTake.consumedLiters)
     }
     
-    init(waterInTake: WaterInTake) {
+    init(waterInTake: Drink) {
         self.waterInTake = waterInTake
         self.waterDropViewModel = .init(waterWaveProgress: waterInTake.waterWaveProgress)
     }

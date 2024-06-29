@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct WaterInTakeView: View {
-    @State private(set) var viewModel: WaterInTakeViewModel
+struct DrinkView: View {
+    @State private(set) var viewModel: DrinkViewModel
     
     var body: some View {
         ZStack {
@@ -41,5 +41,5 @@ struct WaterInTakeView: View {
 }
 
 #Preview {
-    WaterInTakeView(viewModel: .init(waterInTake: .init(numberOfGlasses: 5, consumedLiters: 1.25)))
+    DrinkView(viewModel: .init(waterInTake: .init(numberOfGlasses: 5, consumedLiters: 1.25)))
 }
