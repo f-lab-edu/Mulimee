@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WaterDropView: View {
-    private(set) var viewModel: WaterDropViewModel
+    @Environment(WaterDropViewModel.self) var viewModel
     
     var body: some View {
         GeometryReader { proxy in
@@ -66,5 +66,6 @@ struct WaterDropView: View {
 }
 
 #Preview {
-    WaterDropView(viewModel: .init(waterWaveProgress: 0.5))
+    WaterDropView()
+        .environment(WaterDropViewModel(waterWaveProgress: 0.5))
 }

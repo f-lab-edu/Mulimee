@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DrinkView: View {
-    @State private(set) var viewModel: DrinkViewModel
+    @Environment(DrinkViewModel.self) var viewModel
     
     var body: some View {
         ZStack {
@@ -16,8 +16,9 @@ struct DrinkView: View {
                 .ignoresSafeArea()
             VStack {
                 ZStack {
-                    WaterDropView(viewModel: viewModel.waterDropViewModel)
-                    .frame(height: 450)
+                    WaterDropView()
+                        .environment(WaterDropViewModel(waterWaveProgress: viewModel.drink.waterWaveProgress))
+                        .frame(height: 450)
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
                 
@@ -27,7 +28,7 @@ struct DrinkView: View {
                 }
                 .padding()
                 Button {
-                    viewModel.drink()
+                    viewModel.drinkWater()
                 } label: {
                     Text("Drink!")
                         .padding()
@@ -41,7 +42,6 @@ struct DrinkView: View {
 }
 
 #Preview {
-    let viewModel = DrinkViewModel(waterInTake: .init(numberOfGlasses: 5, consumedLiters: 1.25))
-    return DrinkView()
-        .environment(viewModel)
+    DrinkView()
+        .environment(DrinkViewModel(drink: .init(numberOfGlasses: 5, consumedLiters: 1.25)))
 }

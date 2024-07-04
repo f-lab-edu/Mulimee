@@ -10,6 +10,7 @@ import Foundation
 protocol DrinkProtocol {
     var numberOfGlasses: Int { get }
     var consumedLiters: Double { get }
+    var waterWaveProgress: CGFloat { get }
     
     mutating func setNumberOfGlasses(_ value: Int)
     mutating func setConsumedLitters(_ value: Double)
@@ -18,6 +19,9 @@ protocol DrinkProtocol {
 struct Drink {
     private(set) var numberOfGlasses: Int
     private(set) var consumedLiters: Double
+    var waterWaveProgress: CGFloat {
+        CGFloat(numberOfGlasses) / 8
+    }
     
     mutating func setNumberOfGlasses(_ value: Int) {
         guard numberOfGlasses < 8 else {

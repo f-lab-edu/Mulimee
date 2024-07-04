@@ -11,10 +11,9 @@ import SwiftUI
 struct MulimeeApp: App {
     var body: some Scene {
         WindowGroup {
-            let waterInTake = Drink(numberOfGlasses: 0, consumedLiters: 0)
-            let drinkViewModel = DrinkViewModel(waterInTake: waterInTake)
+            let drink = Drink(numberOfGlasses: 0, consumedLiters: 0)
             DrinkView()
-                .environment(drinkViewModel)
+                .environment(DrinkViewModel(drink: drink))
         }
     }
 }
