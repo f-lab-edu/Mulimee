@@ -8,23 +8,40 @@
 import SwiftUI
 
 struct DrinkView: View {
-    @Environment(DrinkViewModel.self) private var viewModel
+    @Environment(DrinkViewModel.self) var viewModel
     
     var body: some View {
-        VStack {
-            Text(viewModel.glassOfWater)
+        ZStack {
+            Color(.cyan)
+                .ignoresSafeArea()
+            VStack {
+                ZStack {
+                    WaterDropView()
+                        .environment(WaterDropViewModel(waterWaveProgress: viewModel.drink.waterWaveProgress))
+                        .frame(height: 450)
+                }
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                
+                HStack(alignment: .bottom) {
+                    Text(viewModel.glassOfWater)
+                    Text(viewModel.liter)
+                }
                 .padding()
-            Button {
-                viewModel.drink()
-            } label: {
-                Text("Drink")
+                Button {
+                    viewModel.drinkWater()
+                } label: {
+                    Text("Drink!")
+                        .padding()
+                        .background(.white)
+                        .foregroundColor(.black)
+                        .cornerRadius(10)
+                }
             }
         }
     }
 }
 
 #Preview {
-    let viewModel = DrinkViewModel(waterInTake: .init(numberOfGlasses: 5, consumedLiters: 1.25))
-    return DrinkView()
-        .environment(viewModel)
+    DrinkView()
+        .environment(DrinkViewModel(drink: .init(numberOfGlasses: 5, consumedLiters: 1.25)))
 }

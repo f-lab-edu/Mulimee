@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE4218BA2C2B14F0005DA37D /* WaterInTake.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4218B92C2B14F0005DA37D /* WaterInTake.swift */; };
+		CE4218BA2C2B14F0005DA37D /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4218B92C2B14F0005DA37D /* Drink.swift */; };
 		CE4218BC2C2B1AC4005DA37D /* DrinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4218BB2C2B1AC4005DA37D /* DrinkViewModel.swift */; };
+		CE4A18EF2C301CAA007D2279 /* GlareCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */; };
+		CE88BF332C2D9C2C00C6081F /* WaterWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */; };
+		CE88BF352C2DAB8F00C6081F /* WaterDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88BF342C2DAB8F00C6081F /* WaterDropView.swift */; };
+		CE88BF372C2DABD100C6081F /* WaterDropViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88BF362C2DABD100C6081F /* WaterDropViewModel.swift */; };
 		CE9D49882C232A3C005021CF /* MulimeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D49872C232A3C005021CF /* MulimeeApp.swift */; };
 		CE9D498A2C232A3C005021CF /* DrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D49892C232A3C005021CF /* DrinkView.swift */; };
 		CE9D498C2C232A3E005021CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9D498B2C232A3E005021CF /* Assets.xcassets */; };
@@ -36,8 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CE4218B92C2B14F0005DA37D /* WaterInTake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterInTake.swift; sourceTree = "<group>"; };
+		CE4218B92C2B14F0005DA37D /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		CE4218BB2C2B1AC4005DA37D /* DrinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkViewModel.swift; sourceTree = "<group>"; };
+		CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlareCircleView.swift; sourceTree = "<group>"; };
+		CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWaveView.swift; sourceTree = "<group>"; };
+		CE88BF342C2DAB8F00C6081F /* WaterDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterDropView.swift; sourceTree = "<group>"; };
+		CE88BF362C2DABD100C6081F /* WaterDropViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterDropViewModel.swift; sourceTree = "<group>"; };
 		CE9D49842C232A3C005021CF /* Mulimee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mulimee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9D49872C232A3C005021CF /* MulimeeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulimeeApp.swift; sourceTree = "<group>"; };
 		CE9D49892C232A3C005021CF /* DrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkView.swift; sourceTree = "<group>"; };
@@ -100,9 +108,13 @@
 			isa = PBXGroup;
 			children = (
 				CE9D49872C232A3C005021CF /* MulimeeApp.swift */,
-				CE4218B92C2B14F0005DA37D /* WaterInTake.swift */,
+				CE4218B92C2B14F0005DA37D /* Drink.swift */,
 				CE9D49892C232A3C005021CF /* DrinkView.swift */,
 				CE4218BB2C2B1AC4005DA37D /* DrinkViewModel.swift */,
+				CE88BF342C2DAB8F00C6081F /* WaterDropView.swift */,
+				CE88BF362C2DABD100C6081F /* WaterDropViewModel.swift */,
+				CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */,
+				CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */,
 				CE9D498B2C232A3E005021CF /* Assets.xcassets */,
 				CE9D498D2C232A3E005021CF /* Mulimee.entitlements */,
 				CE9D498E2C232A3E005021CF /* Preview Content */,
@@ -265,10 +277,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE4A18EF2C301CAA007D2279 /* GlareCircleView.swift in Sources */,
 				CE4218BC2C2B1AC4005DA37D /* DrinkViewModel.swift in Sources */,
 				CE9D498A2C232A3C005021CF /* DrinkView.swift in Sources */,
+				CE88BF372C2DABD100C6081F /* WaterDropViewModel.swift in Sources */,
 				CE9D49882C232A3C005021CF /* MulimeeApp.swift in Sources */,
-				CE4218BA2C2B14F0005DA37D /* WaterInTake.swift in Sources */,
+				CE88BF352C2DAB8F00C6081F /* WaterDropView.swift in Sources */,
+				CE4218BA2C2B14F0005DA37D /* Drink.swift in Sources */,
+				CE88BF332C2D9C2C00C6081F /* WaterWaveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

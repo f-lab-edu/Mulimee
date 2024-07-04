@@ -8,31 +8,24 @@
 import Foundation
 import Observation
 
-protocol DrinkViewModelProtocol {
-    var glassOfWater: String { get }
-    var liter: String { get }
-    
-    func drink()
-}
-
 @Observable
 final class DrinkViewModel {
-    private(set) var waterInTake: Drink
+    private(set) var drink: Drink
     
     var glassOfWater: String {
-        "\(waterInTake.numberOfGlasses)잔"
+        "\(drink.numberOfGlasses)잔"
     }
     
     var liter: String {
-        String(format: "%.2fL", waterInTake.consumedLiters)
+        String(format: "%.2fL", drink.consumedLiters)
     }
     
-    init(waterInTake: Drink) {
-        self.waterInTake = waterInTake
+    init(drink: Drink) {
+        self.drink = drink
     }
     
-    func drink() {
-        waterInTake.setNumberOfGlasses(1)
-        waterInTake.setConsumedLitters(0.25)
+    func drinkWater() {
+        drink.setNumberOfGlasses(1)
+        drink.setConsumedLitters(0.25)
     }
 }
