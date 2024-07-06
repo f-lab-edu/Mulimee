@@ -11,7 +11,7 @@ import SwiftUI
 struct MulimeeApp: App {
     var body: some Scene {
         WindowGroup {
-            let drink = Drink(numberOfGlasses: 0, consumedLiters: 0)
+            let drink = RepositoryImpl().fetchDrink()
             DrinkView()
                 .environment(DrinkViewModel(drink: drink))
         }

@@ -25,7 +25,6 @@ final class DrinkViewModel {
     }
     
     func drinkWater() {
-        drink.setNumberOfGlasses(1)
-        drink.setConsumedLitters(0.25)
+        drink.drinkWtaer()
     }
 }
