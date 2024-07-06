@@ -27,7 +27,6 @@ struct Drink {
             return
         }
         numberOfGlasses.increment()
-        RepositoryImpl().setDrink(with: numberOfGlasses)
     }
 }
 
