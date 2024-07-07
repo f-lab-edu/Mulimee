@@ -46,6 +46,7 @@ struct DrinkView: View {
 }
 
 #Preview {
-    DrinkView()
-        .environment(DrinkViewModel(drink: .init(numberOfGlasses: 0)))
+    return DrinkView()
+        .environment(DrinkViewModel(drink: RepositoryImpl().fetchDrink(),
+                                    repository: RepositoryImpl()))
 }
