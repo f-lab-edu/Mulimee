@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CE4218BA2C2B14F0005DA37D /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4218B92C2B14F0005DA37D /* Drink.swift */; };
 		CE4218BC2C2B1AC4005DA37D /* DrinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4218BB2C2B1AC4005DA37D /* DrinkViewModel.swift */; };
+		CE43FF8C2C3D6FCD00309DE2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43FF8B2C3D6FCD00309DE2 /* MainView.swift */; };
 		CE4A18EF2C301CAA007D2279 /* GlareCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */; };
 		CE88BF332C2D9C2C00C6081F /* WaterWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */; };
 		CE88BF352C2DAB8F00C6081F /* WaterDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88BF342C2DAB8F00C6081F /* WaterDropView.swift */; };
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		CE4218B92C2B14F0005DA37D /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		CE4218BB2C2B1AC4005DA37D /* DrinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkViewModel.swift; sourceTree = "<group>"; };
+		CE43FF8B2C3D6FCD00309DE2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlareCircleView.swift; sourceTree = "<group>"; };
 		CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWaveView.swift; sourceTree = "<group>"; };
 		CE88BF342C2DAB8F00C6081F /* WaterDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterDropView.swift; sourceTree = "<group>"; };
@@ -125,9 +127,10 @@
 			children = (
 				CE9D49872C232A3C005021CF /* MulimeeApp.swift */,
 				CEB3F4092C39112100C86FB8 /* Repository.swift */,
-				CEB3F4102C392B8300C86FB8 /* Utilities */,
+				CE43FF8B2C3D6FCD00309DE2 /* MainView.swift */,
 				CEB3F40F2C392B7A00C86FB8 /* Splash */,
 				CEB3F4032C3910CF00C86FB8 /* Drink */,
+				CEB3F4102C392B8300C86FB8 /* Utilities */,
 				CE9D498B2C232A3E005021CF /* Assets.xcassets */,
 				CE9D498D2C232A3E005021CF /* Mulimee.entitlements */,
 				CEB3F4192C392C3F00C86FB8 /* Resources */,
@@ -384,6 +387,7 @@
 				CE4218BA2C2B14F0005DA37D /* Drink.swift in Sources */,
 				CE88BF332C2D9C2C00C6081F /* WaterWaveView.swift in Sources */,
 				CEB3F4052C3910DD00C86FB8 /* WaterDropViewModel.swift in Sources */,
+				CE43FF8C2C3D6FCD00309DE2 /* MainView.swift in Sources */,
 				CEB3F40A2C39112100C86FB8 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

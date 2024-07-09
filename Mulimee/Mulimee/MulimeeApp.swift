@@ -11,7 +11,7 @@ import SwiftUI
 struct MulimeeApp: App {
     var body: some Scene {
         WindowGroup {
-            SplashView()
+            MainView()
         }
     }
 }

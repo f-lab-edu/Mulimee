@@ -8,13 +8,6 @@
 import SwiftUI
 
 struct SplashView: View {
-    @State private var navigated: Bool = false
-    private let moveToTimer = Timer.publish(every: 2,
-                                            on: .main,
-                                            in: .common)
-                                    .autoconnect()
-                                    .first()
-    
     var body: some View {
         ZStack {
             LottieView()
@@ -24,16 +17,6 @@ struct SplashView: View {
                 .padding()
                 .font(.title)
                 .foregroundColor(.white)
-        }
-        .onReceive(moveToTimer) { _ in
-            navigated.toggle()
-        }
-        .fullScreenCover(isPresented: $navigated) {
-            let repository = RepositoryImpl()
-            let drink = repository.fetchDrink()
-            DrinkView()
-                .environment(DrinkViewModel(drink: drink,
-                                            repository: repository))
         }
     }
 }
