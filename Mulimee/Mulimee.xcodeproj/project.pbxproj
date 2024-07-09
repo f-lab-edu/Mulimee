@@ -10,6 +10,7 @@
 		CE4218BA2C2B14F0005DA37D /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4218B92C2B14F0005DA37D /* Drink.swift */; };
 		CE4218BC2C2B1AC4005DA37D /* DrinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4218BB2C2B1AC4005DA37D /* DrinkViewModel.swift */; };
 		CE43FF8C2C3D6FCD00309DE2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43FF8B2C3D6FCD00309DE2 /* MainView.swift */; };
+		CE43FF8F2C3D725700309DE2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CE43FF8E2C3D725700309DE2 /* Lottie */; };
 		CE4A18EF2C301CAA007D2279 /* GlareCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */; };
 		CE88BF332C2D9C2C00C6081F /* WaterWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */; };
 		CE88BF352C2DAB8F00C6081F /* WaterDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88BF342C2DAB8F00C6081F /* WaterDropView.swift */; };
@@ -26,7 +27,6 @@
 		CEB3F40E2C3912C700C86FB8 /* String+UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F40D2C3912C700C86FB8 /* String+UserDefaultKey.swift */; };
 		CEB3F4132C392BA100C86FB8 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F4122C392BA100C86FB8 /* SplashView.swift */; };
 		CEB3F4152C392BD500C86FB8 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F4142C392BD500C86FB8 /* LottieView.swift */; };
-		CEB3F4182C392C0600C86FB8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CEB3F4172C392C0600C86FB8 /* Lottie */; };
 		CEB3F41B2C392C5C00C86FB8 /* bubble.json in Resources */ = {isa = PBXBuildFile; fileRef = CEB3F41A2C392C5C00C86FB8 /* bubble.json */; };
 		CEB3F41D2C392C8E00C86FB8 /* FadeInOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F41C2C392C8E00C86FB8 /* FadeInOutView.swift */; };
 /* End PBXBuildFile section */
@@ -81,7 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEB3F4182C392C0600C86FB8 /* Lottie in Frameworks */,
+				CE43FF8F2C3D725700309DE2 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +254,7 @@
 			);
 			name = Mulimee;
 			packageProductDependencies = (
-				CEB3F4172C392C0600C86FB8 /* Lottie */,
+				CE43FF8E2C3D725700309DE2 /* Lottie */,
 			);
 			productName = Mulimee;
 			productReference = CE9D49842C232A3C005021CF /* Mulimee.app */;
@@ -329,7 +329,7 @@
 			);
 			mainGroup = CE9D497B2C232A3C005021CF;
 			packageReferences = (
-				CEB3F4162C392C0600C86FB8 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				CE43FF8D2C3D725700309DE2 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = CE9D49852C232A3C005021CF /* Products */;
 			projectDirPath = "";
@@ -747,7 +747,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CEB3F4162C392C0600C86FB8 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+		CE43FF8D2C3D725700309DE2 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
 			requirement = {
@@ -758,9 +758,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CEB3F4172C392C0600C86FB8 /* Lottie */ = {
+		CE43FF8E2C3D725700309DE2 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEB3F4162C392C0600C86FB8 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			package = CE43FF8D2C3D725700309DE2 /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
