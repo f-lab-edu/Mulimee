@@ -11,6 +11,7 @@ import Observation
 @Observable
 final class DrinkViewModel {
     private(set) var drink: Drink
+    private let repository: Repository
     
     var glassOfWater: String {
         "\(drink.numberOfGlasses)잔"
@@ -20,12 +21,14 @@ final class DrinkViewModel {
         String(format: "%.2fL", drink.consumedLiters)
     }
     
-    init(drink: Drink) {
+    init(drink: Drink,
+         repository: Repository) {
         self.drink = drink
+        self.repository = repository
     }
     
     func drinkWater() {
-        drink.setNumberOfGlasses(1)
-        drink.setConsumedLitters(0.25)
+        drink.drinkWtaer()
+        repository.setDrink(with: drink.numberOfGlasses)
     }
 }

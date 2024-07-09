@@ -12,7 +12,7 @@ struct DrinkView: View {
     
     var body: some View {
         ZStack {
-            Color(.cyan)
+            Color("FogMist", bundle: .main)
                 .ignoresSafeArea()
             VStack {
                 ZStack {
@@ -22,18 +22,22 @@ struct DrinkView: View {
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
                 
-                HStack(alignment: .bottom) {
+                HStack(alignment: .firstTextBaseline) {
                     Text(viewModel.glassOfWater)
+                        .font(.title)
                     Text(viewModel.liter)
+                        .font(.callout)
                 }
                 .padding()
+                
                 Button {
                     viewModel.drinkWater()
                 } label: {
-                    Text("Drink!")
+                    Text("벌컥")
+                        .font(.title)
                         .padding()
-                        .background(.white)
-                        .foregroundColor(.black)
+                        .background(.teal)
+                        .foregroundColor(.white)
                         .cornerRadius(10)
                 }
             }
@@ -42,6 +46,7 @@ struct DrinkView: View {
 }
 
 #Preview {
-    DrinkView()
-        .environment(DrinkViewModel(drink: .init(numberOfGlasses: 5, consumedLiters: 1.25)))
+    return DrinkView()
+        .environment(DrinkViewModel(drink: RepositoryImpl().fetchDrink(),
+                                    repository: RepositoryImpl()))
 }
