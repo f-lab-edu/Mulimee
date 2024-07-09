@@ -67,5 +67,5 @@ struct WaterDropView: View {
 
 #Preview {
     WaterDropView()
-        .environment(WaterDropViewModel(waterWaveProgress: 0.5))
+        .environment(WaterDropViewModel(.init(2)))
 }

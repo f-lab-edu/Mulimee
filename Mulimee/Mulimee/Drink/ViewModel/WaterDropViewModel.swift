@@ -5,16 +5,26 @@
 //  Created by Kyeongmo Yang on 6/27/24.
 //
 
+import Combine
 import Foundation
 
 @Observable
 final class WaterDropViewModel {
-    private(set) var waterWaveProgress: Double
+    private(set) var waterWaveProgress: Double = 0
     let waveHeight: CGFloat = 0.1
     private(set) var offset: CGFloat = 0
+    private var cancellables = Set<AnyCancellable>()
     
-    init(waterWaveProgress: Double) {
-        self.waterWaveProgress = waterWaveProgress
+    init(_ numberOfGlassesPublisher: CurrentValueSubject<Int, Never>) {
+        bind(numberOfGlassesPublisher)
+    }
+    
+    private func bind(_ numberOfGlassesPublisher: CurrentValueSubject<Int, Never>) {
+        numberOfGlassesPublisher
+            .sink { [weak self] numberOfGlasses in
+                self?.waterWaveProgress = CGFloat(numberOfGlasses) / 8
+            }
+            .store(in: &self.cancellables)
     }
     
     func startAnimation() {

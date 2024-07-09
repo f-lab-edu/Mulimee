@@ -17,7 +17,7 @@ struct DrinkView: View {
             VStack {
                 ZStack {
                     WaterDropView()
-                        .environment(WaterDropViewModel(waterWaveProgress: viewModel.drink.waterWaveProgress))
+                        .environment(WaterDropViewModel(viewModel.drink.numberOfGlassesPublisher))
                         .frame(height: 450)
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
@@ -46,7 +46,6 @@ struct DrinkView: View {
 }
 
 #Preview {
-    return DrinkView()
-        .environment(DrinkViewModel(drink: RepositoryImpl().fetchDrink(),
-                                    repository: RepositoryImpl()))
+    DrinkView()
+        .environment(DrinkViewModel(drink: .init(numberOfGlasses: 2, repository: RepositoryImpl())))
 }
