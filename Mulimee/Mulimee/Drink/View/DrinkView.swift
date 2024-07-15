@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DrinkView: View {
-    @Environment(DrinkViewModel.self) var viewModel
+    @EnvironmentObject var viewModel: DrinkViewModel
     
     var body: some View {
         ZStack {
@@ -17,7 +17,7 @@ struct DrinkView: View {
             VStack {
                 ZStack {
                     WaterDropView()
-                        .environment(WaterDropViewModel(viewModel.drink.numberOfGlassesPublisher))
+                        .environmentObject(WaterDropViewModel(viewModel.drink.numberOfGlassesPublisher))
                         .frame(height: 450)
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
@@ -47,5 +47,5 @@ struct DrinkView: View {
 
 #Preview {
     DrinkView()
-        .environment(DrinkViewModel(drink: .init(numberOfGlasses: 2, repository: RepositoryImpl())))
+        .environmentObject(DrinkViewModel(drink: .init(numberOfGlasses: 2, repository: RepositoryImpl())))
 }

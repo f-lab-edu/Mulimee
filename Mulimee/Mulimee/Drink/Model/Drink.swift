@@ -8,11 +8,10 @@
 import Combine
 import Foundation
 
-@Observable
-final class Drink {
+final class Drink: ObservableObject {
     private let repository: Repository
     
-    private(set) var numberOfGlasses: Int {
+    @Published private(set) var numberOfGlasses: Int {
         didSet { numberOfGlassesPublisher.send(numberOfGlasses) }
     }
     let numberOfGlassesPublisher: CurrentValueSubject<Int, Never>

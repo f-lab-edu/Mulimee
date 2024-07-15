@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @Environment(Drink.self) private var drink
+    @EnvironmentObject private var drink: Drink
     @State private var isLaunching = true
     private let moveToTimer = Timer.publish(every: 2,on: .main, in: .common).autoconnect().first()
     
@@ -23,7 +23,7 @@ struct MainView: View {
                 }
         } else {
             DrinkView()
-                .environment(DrinkViewModel(drink: drink))
+                .environmentObject(DrinkViewModel(drink: drink))
                 .transition(.opacity)
         }
     }

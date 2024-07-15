@@ -8,11 +8,10 @@
 import Combine
 import Foundation
 
-@Observable
-final class WaterDropViewModel {
-    private(set) var waterWaveProgress: Double = 0
+final class WaterDropViewModel: ObservableObject {
+    @Published private(set) var waterWaveProgress: Double = 0
     let waveHeight: CGFloat = 0.1
-    private(set) var offset: CGFloat = 0
+    @Published private(set) var offset: CGFloat = 0
     private var cancellables = Set<AnyCancellable>()
     
     init(_ numberOfGlassesPublisher: CurrentValueSubject<Int, Never>) {

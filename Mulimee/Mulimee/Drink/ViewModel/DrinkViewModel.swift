@@ -9,10 +9,9 @@ import Combine
 import Foundation
 import SwiftUI
 
-@Observable
-final class DrinkViewModel {
+final class DrinkViewModel: ObservableObject {
     let drink: Drink
-    private(set) var numberOfGlasses: Int = 0
+    @Published private(set) var numberOfGlasses: Int = 0
     private var cancellables = Set<AnyCancellable>()
     
     var consumedLiters: Double {

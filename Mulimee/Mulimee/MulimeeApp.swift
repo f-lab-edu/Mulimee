@@ -20,7 +20,7 @@ struct MulimeeApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environment(drink)
+                .environmentObject(drink)
         }
     }
 }
