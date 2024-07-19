@@ -14,8 +14,7 @@ extension UserDefaults {
     }
     
     static var appGroup: UserDefaults {
-        let appGroupId = "group.gaeng2y.mulimee"
-        guard let appGroupUserDefaults = UserDefaults(suiteName: appGroupId) else {
+        guard let appGroupUserDefaults = UserDefaults(suiteName: .appGroupId) else {
             fatalError("Undefined App Group, Please check capabilities")
         }
         return appGroupUserDefaults

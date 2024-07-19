@@ -9,22 +9,33 @@ import WidgetKit
 import SwiftUI
 
 struct Provider: AppIntentTimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationAppIntent())
+    private let repository: Repository = RepositoryImpl()
+    
+    func placeholder(in context: Context) -> MulimeeEntry {
+        let numberOfGlasses = repository.fetchDrink()
+        return MulimeeEntry(date: .now,
+                            numberOfGlasses: numberOfGlasses,
+                            configuration: ConfigurationAppIntent())
     }
     
-    func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: configuration)
+    func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> MulimeeEntry {
+        let numberOfGlasses = repository.fetchDrink()
+        return MulimeeEntry(date: .now,
+                            numberOfGlasses: numberOfGlasses,
+                            configuration: ConfigurationAppIntent())
     }
     
-    func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
-        var entries: [SimpleEntry] = []
+    func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<MulimeeEntry> {
+        var entries: [MulimeeEntry] = []
         
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
+            let numberOfGlasses = repository.fetchDrink()
+            let entry = MulimeeEntry(date: entryDate,
+                                numberOfGlasses: numberOfGlasses,
+                                configuration: ConfigurationAppIntent())
             entries.append(entry)
         }
         
@@ -32,53 +43,64 @@ struct Provider: AppIntentTimelineProvider {
     }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct MulimeeEntry: TimelineEntry {
     let date: Date
+    let numberOfGlasses: Int
     let configuration: ConfigurationAppIntent
 }
 
 struct MulimeeWidgetEntryView : View {
     var entry: Provider.Entry
+    private var numberOfGlasses: Int {
+        entry.numberOfGlasses
+    }
     
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
+        ZStack {
+            Image("\(numberOfGlasses)")
+                .resizable()
             
-            Text("Favorite Emoji:")
-            Text(entry.configuration.favoriteEmoji)
+            VStack {
+                Spacer()
+                
+                HStack {
+                    Button(intent: MulimeeIntent()) {
+                        Text("마시기")
+                            .font(.caption2)
+                            .foregroundColor(.white)
+                    }
+                    .background(Color.teal)
+                    .cornerRadius(10)
+                    
+                    Spacer()
+                    
+                    Text("\(numberOfGlasses)잔")
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .shadow(color: .black, radius: 3)
+                }
+            }
         }
     }
 }
 
 struct MulimeeWidget: Widget {
-    let kind: String = "MulimeeWidget"
+    let kind: String = .widgetKind
     
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
             MulimeeWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
-extension ConfigurationAppIntent {
-    fileprivate static var smiley: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "😀"
-        return intent
-    }
-    
-    fileprivate static var starEyes: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "🤩"
-        return intent
-    }
-}
 
 #Preview(as: .systemSmall) {
     MulimeeWidget()
 } timeline: {
-    SimpleEntry(date: .now, configuration: .smiley)
-    SimpleEntry(date: .now, configuration: .starEyes)
+    MulimeeEntry(date: .now, numberOfGlasses: 0, configuration: .init())
+    MulimeeEntry(date: .now, numberOfGlasses: 4, configuration: .init())
+    MulimeeEntry(date: .now, numberOfGlasses: 8, configuration: .init())
 }

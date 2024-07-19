@@ -33,12 +33,7 @@ struct Drink {
     func reset() {
         numberOfGlasses = .zero
         repository.reset()
+}
+    }
     }
 }
-
-extension Int {
-    mutating func increment(_ value: Int = 1) {
-        self += value
-    }
-}
- 

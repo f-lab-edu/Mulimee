@@ -29,6 +29,9 @@ struct MainView: View {
             DrinkView()
                 .environmentObject(DrinkViewModel(drink: drink))
                 .transition(.opacity)
+                .onChange(of: scenePhase) {
+                    drink.reload()
+                }
         }
     }
 }

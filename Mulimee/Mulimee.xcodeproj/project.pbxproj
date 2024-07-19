@@ -21,6 +21,15 @@
 		CE9BD42A2C4AB2B100A40A68 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BD4292C4AB2B100A40A68 /* AppIntent.swift */; };
 		CE9BD42C2C4AB2B200A40A68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9BD42B2C4AB2B200A40A68 /* Assets.xcassets */; };
 		CE9BD4302C4AB2B200A40A68 /* MulimeeWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CE9BD41E2C4AB2B100A40A68 /* MulimeeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CE9BD4352C4AB88C00A40A68 /* WaterWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */; };
+		CE9BD4362C4ABC4000A40A68 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F4092C39112100C86FB8 /* Repository.swift */; };
+		CE9BD4372C4ABC4A00A40A68 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4218B92C2B14F0005DA37D /* Drink.swift */; };
+		CE9BD4382C4ABD0C00A40A68 /* UserDefaults+AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F40B2C39120A00C86FB8 /* UserDefaults+AppGroup.swift */; };
+		CE9BD4392C4ABD2900A40A68 /* String+UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F40D2C3912C700C86FB8 /* String+UserDefaultKey.swift */; };
+		CE9BD4402C4AC7D600A40A68 /* MulimeeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BD43F2C4AC7D600A40A68 /* MulimeeIntent.swift */; };
+		CE9BD4412C4AC88900A40A68 /* MulimeeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BD43F2C4AC7D600A40A68 /* MulimeeIntent.swift */; };
+		CE9BD4432C4AC9E800A40A68 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BD4422C4AC9E800A40A68 /* Int+Extensions.swift */; };
+		CE9BD4442C4AC9EE00A40A68 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BD4422C4AC9E800A40A68 /* Int+Extensions.swift */; };
 		CE9D49882C232A3C005021CF /* MulimeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D49872C232A3C005021CF /* MulimeeApp.swift */; };
 		CE9D498A2C232A3C005021CF /* DrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D49892C232A3C005021CF /* DrinkView.swift */; };
 		CE9D498C2C232A3E005021CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9D498B2C232A3E005021CF /* Assets.xcassets */; };
@@ -91,6 +100,9 @@
 		CE9BD4292C4AB2B100A40A68 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		CE9BD42B2C4AB2B200A40A68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9BD42D2C4AB2B200A40A68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE9BD43A2C4ABF6D00A40A68 /* MulimeeWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MulimeeWidgetExtension.entitlements; sourceTree = "<group>"; };
+		CE9BD43F2C4AC7D600A40A68 /* MulimeeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulimeeIntent.swift; sourceTree = "<group>"; };
+		CE9BD4422C4AC9E800A40A68 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		CE9D49842C232A3C005021CF /* Mulimee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mulimee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9D49872C232A3C005021CF /* MulimeeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulimeeApp.swift; sourceTree = "<group>"; };
 		CE9D49892C232A3C005021CF /* DrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkView.swift; sourceTree = "<group>"; };
@@ -169,6 +181,7 @@
 		CE9BD4242C4AB2B100A40A68 /* MulimeeWidget */ = {
 			isa = PBXGroup;
 			children = (
+				CE9BD43A2C4ABF6D00A40A68 /* MulimeeWidgetExtension.entitlements */,
 				CE9BD4252C4AB2B100A40A68 /* MulimeeWidgetBundle.swift */,
 				CE9BD4272C4AB2B100A40A68 /* MulimeeWidget.swift */,
 				CE9BD4292C4AB2B100A40A68 /* AppIntent.swift */,
@@ -291,6 +304,8 @@
 			children = (
 				CEB3F40B2C39120A00C86FB8 /* UserDefaults+AppGroup.swift */,
 				CEB3F40D2C3912C700C86FB8 /* String+UserDefaultKey.swift */,
+				CE9BD4422C4AC9E800A40A68 /* Int+Extensions.swift */,
+				CE9BD43F2C4AC7D600A40A68 /* MulimeeIntent.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -482,9 +497,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE9BD4352C4AB88C00A40A68 /* WaterWaveView.swift in Sources */,
 				CE9BD4282C4AB2B100A40A68 /* MulimeeWidget.swift in Sources */,
+				CE9BD4412C4AC88900A40A68 /* MulimeeIntent.swift in Sources */,
+				CE9BD4382C4ABD0C00A40A68 /* UserDefaults+AppGroup.swift in Sources */,
+				CE9BD4362C4ABC4000A40A68 /* Repository.swift in Sources */,
 				CE9BD4262C4AB2B100A40A68 /* MulimeeWidgetBundle.swift in Sources */,
+				CE9BD4392C4ABD2900A40A68 /* String+UserDefaultKey.swift in Sources */,
+				CE9BD4372C4ABC4A00A40A68 /* Drink.swift in Sources */,
 				CE9BD42A2C4AB2B100A40A68 /* AppIntent.swift in Sources */,
+				CE9BD4442C4AC9EE00A40A68 /* Int+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +517,7 @@
 				CE4A18EF2C301CAA007D2279 /* GlareCircleView.swift in Sources */,
 				CE4218BC2C2B1AC4005DA37D /* DrinkViewModel.swift in Sources */,
 				CE9D498A2C232A3C005021CF /* DrinkView.swift in Sources */,
+				CE9BD4432C4AC9E800A40A68 /* Int+Extensions.swift in Sources */,
 				CE9D49882C232A3C005021CF /* MulimeeApp.swift in Sources */,
 				CEB3F41D2C392C8E00C86FB8 /* FadeInOutView.swift in Sources */,
 				CEB3F40E2C3912C700C86FB8 /* String+UserDefaultKey.swift in Sources */,
@@ -506,6 +529,7 @@
 				CE88BF332C2D9C2C00C6081F /* WaterWaveView.swift in Sources */,
 				CEB3F4052C3910DD00C86FB8 /* WaterDropViewModel.swift in Sources */,
 				CE43FF8C2C3D6FCD00309DE2 /* MainView.swift in Sources */,
+				CE9BD4402C4AC7D600A40A68 /* MulimeeIntent.swift in Sources */,
 				CEB3F40A2C39112100C86FB8 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,6 +577,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ./MulimeeWidget/MulimeeWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8UV3Y69NB7;
@@ -582,6 +607,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ./MulimeeWidget/MulimeeWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8UV3Y69NB7;
