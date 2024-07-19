@@ -102,6 +102,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE9BD4192C4AB0A000A40A68 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CE9D49872C232A3C005021CF /* MulimeeApp.swift */,
+				CEB3F4092C39112100C86FB8 /* Repository.swift */,
+				CE43FF8B2C3D6FCD00309DE2 /* MainView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		CE9D497B2C232A3C005021CF = {
 			isa = PBXGroup;
 			children = (
@@ -125,14 +135,11 @@
 		CE9D49862C232A3C005021CF /* Mulimee */ = {
 			isa = PBXGroup;
 			children = (
-				CE9D49872C232A3C005021CF /* MulimeeApp.swift */,
-				CEB3F4092C39112100C86FB8 /* Repository.swift */,
-				CE43FF8B2C3D6FCD00309DE2 /* MainView.swift */,
+				CE9D498D2C232A3E005021CF /* Mulimee.entitlements */,
+				CE9BD4192C4AB0A000A40A68 /* App */,
 				CEB3F40F2C392B7A00C86FB8 /* Splash */,
 				CEB3F4032C3910CF00C86FB8 /* Drink */,
 				CEB3F4102C392B8300C86FB8 /* Utilities */,
-				CE9D498B2C232A3E005021CF /* Assets.xcassets */,
-				CE9D498D2C232A3E005021CF /* Mulimee.entitlements */,
 				CEB3F4192C392C3F00C86FB8 /* Resources */,
 				CE9D498E2C232A3E005021CF /* Preview Content */,
 			);
@@ -232,6 +239,7 @@
 		CEB3F4192C392C3F00C86FB8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CE9D498B2C232A3E005021CF /* Assets.xcassets */,
 				CEB3F41A2C392C5C00C86FB8 /* bubble.json */,
 			);
 			path = Resources;
