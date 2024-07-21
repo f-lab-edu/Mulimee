@@ -29,6 +29,11 @@ struct Drink {
         repository.setDrink(with: numberOfGlasses)
         numberOfGlassesPublisher.send(numberOfGlasses)
     }
+    
+    func reset() {
+        numberOfGlasses = .zero
+        repository.reset()
+    }
 }
 
 extension Int {

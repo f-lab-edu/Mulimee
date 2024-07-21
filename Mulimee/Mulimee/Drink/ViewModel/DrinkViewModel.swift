@@ -41,4 +41,8 @@ final class DrinkViewModel: ObservableObject {
     func drinkWater() {
         drink.drinkWater()
     }
+    
+    func reset() {
+        drink.reset()
+    }
 }

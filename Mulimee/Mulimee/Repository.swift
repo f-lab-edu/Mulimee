@@ -10,15 +10,19 @@ import Foundation
 protocol Repository {
     func fetchDrink() -> Int
     func setDrink(with value: Int)
+    func reset()
 }
 
 final class RepositoryImpl: Repository {
     func fetchDrink() -> Int {
-        let numberOfGlassesOfToday = UserDefaults.appGroup.integer(forKey: .glassesOfToday)
-        return numberOfGlassesOfToday
+        UserDefaults.appGroup.glassesOfToday
     }
     
     func setDrink(with value: Int) {
-        UserDefaults.appGroup.setValue(value, forKey: .glassesOfToday)
+        UserDefaults.appGroup.glassesOfToday = value
+    }
+    
+    func reset() {
+        UserDefaults.appGroup.glassesOfToday = .zero
     }
 }
