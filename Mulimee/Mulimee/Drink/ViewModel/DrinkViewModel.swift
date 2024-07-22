@@ -11,7 +11,16 @@ import SwiftUI
 
 final class DrinkViewModel: ObservableObject {
     let drink: Drink
-    @Published private(set) var numberOfGlasses: Int = 0
+    @Published private(set) var numberOfGlasses: Int = 0 {
+        didSet { isDisabledDrinkButton = numberOfGlasses == 8 }
+    }
+    @Published private(set) var isDisabledDrinkButton = false
+    var drinkButtonBackgroundColor: Color {
+        isDisabledDrinkButton ? .black : .teal
+    }
+    var drinkButtonTitle: String {
+        isDisabledDrinkButton ? "다마심" : "마시기"
+    }
     private var cancellables = Set<AnyCancellable>()
     
     var consumedLiters: Double {
