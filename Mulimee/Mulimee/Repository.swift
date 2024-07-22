@@ -8,14 +8,14 @@
 import Foundation
 
 protocol Repository {
-    func fetchDrink() -> Drink
+    func fetchDrink() -> Int
     func setDrink(with value: Int)
 }
 
 final class RepositoryImpl: Repository {
-    func fetchDrink() -> Drink {
+    func fetchDrink() -> Int {
         let numberOfGlassesOfToday = UserDefaults.appGroup.integer(forKey: .glassesOfToday)
-        return Drink(numberOfGlasses: numberOfGlassesOfToday)
+        return numberOfGlassesOfToday
     }
     
     func setDrink(with value: Int) {

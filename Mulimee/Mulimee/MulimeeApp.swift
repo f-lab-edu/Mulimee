@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct MulimeeApp: App {
+    private let repository: Repository = RepositoryImpl()
+    
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(drink: Drink(repository: repository))
         }
     }
 }

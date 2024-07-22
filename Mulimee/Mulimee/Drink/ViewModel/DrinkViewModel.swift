@@ -5,30 +5,40 @@
 //  Created by Kyeongmo Yang on 6/26/24.
 //
 
+import Combine
 import Foundation
-import Observation
+import SwiftUI
 
-@Observable
-final class DrinkViewModel {
-    private(set) var drink: Drink
-    private let repository: Repository
+final class DrinkViewModel: ObservableObject {
+    let drink: Drink
+    @Published private(set) var numberOfGlasses: Int = 0
+    private var cancellables = Set<AnyCancellable>()
+    
+    var consumedLiters: Double {
+        0.25 * Double(numberOfGlasses)
+    }
     
     var glassOfWater: String {
-        "\(drink.numberOfGlasses)잔"
+        "\(numberOfGlasses)잔"
     }
     
     var liter: String {
-        String(format: "%.2fL", drink.consumedLiters)
+        String(format: "%.2fL", consumedLiters)
     }
     
-    init(drink: Drink,
-         repository: Repository) {
+    init(drink: Drink) {
         self.drink = drink
-        self.repository = repository
+        
+        bind(drink.numberOfGlasses)
+    }
+    
+    private func bind(_ numberOfGlassesPublisher: AnyPublisher<Int, Never>) {
+        numberOfGlassesPublisher
+            .assign(to: \.numberOfGlasses, on: self)
+            .store(in: &self.cancellables)
     }
     
     func drinkWater() {
-        drink.drinkWtaer()
-        repository.setDrink(with: drink.numberOfGlasses)
+        drink.drinkWater()
     }
 }

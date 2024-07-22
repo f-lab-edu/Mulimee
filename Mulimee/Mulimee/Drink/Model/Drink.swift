@@ -5,27 +5,29 @@
 //  Created by Kyeongmo Yang on 6/26/24.
 //
 
+import Combine
 import Foundation
 
 struct Drink {
-    private(set) var numberOfGlasses: Int
+    private let repository: Repository
     
-    var consumedLiters: Double {
-        0.25 * Double(numberOfGlasses)
-    }
-    var waterWaveProgress: CGFloat {
-        CGFloat(numberOfGlasses) / 8
+    private let numberOfGlassesPublisher: CurrentValueSubject<Int, Never>
+    var numberOfGlasses: AnyPublisher<Int, Never> {
+        numberOfGlassesPublisher.eraseToAnyPublisher()
     }
     
-    init(numberOfGlasses: Int) {
-        self.numberOfGlasses = numberOfGlasses
+    init(repository: Repository) {
+        self.repository = repository
+        self.numberOfGlassesPublisher = .init(repository.fetchDrink())
     }
     
-    mutating func drinkWtaer() {
-        guard numberOfGlasses < 8 else {
+    func drinkWater() {
+        guard numberOfGlassesPublisher.value < 8 else {
             return
         }
-        numberOfGlasses.increment()
+        let numberOfGlasses = numberOfGlassesPublisher.value + 1
+        repository.setDrink(with: numberOfGlasses)
+        numberOfGlassesPublisher.send(numberOfGlasses)
     }
 }
 
@@ -34,3 +36,4 @@ extension Int {
         self += value
     }
 }
+ 

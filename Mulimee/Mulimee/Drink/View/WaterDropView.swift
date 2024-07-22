@@ -5,10 +5,11 @@
 //  Created by Kyeongmo Yang on 6/27/24.
 //
 
+import Combine
 import SwiftUI
 
 struct WaterDropView: View {
-    @Environment(WaterDropViewModel.self) var viewModel
+    @EnvironmentObject var viewModel: WaterDropViewModel
     
     var body: some View {
         GeometryReader { proxy in
@@ -67,5 +68,5 @@ struct WaterDropView: View {
 
 #Preview {
     WaterDropView()
-        .environment(WaterDropViewModel(waterWaveProgress: 0.5))
+        .environmentObject(WaterDropViewModel(Just(5).eraseToAnyPublisher()))
 }
