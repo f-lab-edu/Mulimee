@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject private var drink: Drink
+    private var drink: Drink
     @State private var isLaunching = true
     private let moveToTimer = Timer.publish(every: 2,on: .main, in: .common).autoconnect().first()
+    
+    init(drink: Drink) {
+        self.drink = drink
+    }
     
     var body: some View {
         if isLaunching {
@@ -30,5 +34,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    MainView(drink: .init(repository: RepositoryImpl()))
 }

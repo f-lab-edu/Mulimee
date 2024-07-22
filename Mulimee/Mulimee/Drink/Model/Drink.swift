@@ -8,26 +8,26 @@
 import Combine
 import Foundation
 
-final class Drink: ObservableObject {
+struct Drink {
     private let repository: Repository
     
-    @Published private(set) var numberOfGlasses: Int {
-        didSet { numberOfGlassesPublisher.send(numberOfGlasses) }
+    private let numberOfGlassesPublisher: CurrentValueSubject<Int, Never>
+    var numberOfGlasses: AnyPublisher<Int, Never> {
+        numberOfGlassesPublisher.eraseToAnyPublisher()
     }
-    let numberOfGlassesPublisher: CurrentValueSubject<Int, Never>
     
-    init(numberOfGlasses: Int, repository: Repository) {
-        self.numberOfGlasses = numberOfGlasses
+    init(repository: Repository) {
         self.repository = repository
-        self.numberOfGlassesPublisher = .init(numberOfGlasses)
+        self.numberOfGlassesPublisher = .init(repository.fetchDrink())
     }
     
     func drinkWater() {
-        guard numberOfGlasses < 8 else {
+        guard numberOfGlassesPublisher.value < 8 else {
             return
         }
-        numberOfGlasses.increment()
+        let numberOfGlasses = numberOfGlassesPublisher.value + 1
         repository.setDrink(with: numberOfGlasses)
+        numberOfGlassesPublisher.send(numberOfGlasses)
     }
 }
 

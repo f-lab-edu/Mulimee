@@ -14,11 +14,11 @@ final class WaterDropViewModel: ObservableObject {
     @Published private(set) var offset: CGFloat = 0
     private var cancellables = Set<AnyCancellable>()
     
-    init(_ numberOfGlassesPublisher: CurrentValueSubject<Int, Never>) {
+    init(_ numberOfGlassesPublisher: AnyPublisher<Int, Never>) {
         bind(numberOfGlassesPublisher)
     }
     
-    private func bind(_ numberOfGlassesPublisher: CurrentValueSubject<Int, Never>) {
+    private func bind(_ numberOfGlassesPublisher: AnyPublisher<Int, Never>) {
         numberOfGlassesPublisher
             .sink { [weak self] numberOfGlasses in
                 self?.waterWaveProgress = CGFloat(numberOfGlasses) / 8

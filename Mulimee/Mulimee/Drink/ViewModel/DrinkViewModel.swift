@@ -29,10 +29,10 @@ final class DrinkViewModel: ObservableObject {
     init(drink: Drink) {
         self.drink = drink
         
-        bind(drink.numberOfGlassesPublisher)
+        bind(drink.numberOfGlasses)
     }
     
-    private func bind(_ numberOfGlassesPublisher: CurrentValueSubject<Int, Never>) {
+    private func bind(_ numberOfGlassesPublisher: AnyPublisher<Int, Never>) {
         numberOfGlassesPublisher
             .assign(to: \.numberOfGlasses, on: self)
             .store(in: &self.cancellables)

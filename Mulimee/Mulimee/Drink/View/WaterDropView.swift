@@ -5,6 +5,7 @@
 //  Created by Kyeongmo Yang on 6/27/24.
 //
 
+import Combine
 import SwiftUI
 
 struct WaterDropView: View {
@@ -67,5 +68,5 @@ struct WaterDropView: View {
 
 #Preview {
     WaterDropView()
-        .environmentObject(WaterDropViewModel(.init(2)))
+        .environmentObject(WaterDropViewModel(Just(5).eraseToAnyPublisher()))
 }
