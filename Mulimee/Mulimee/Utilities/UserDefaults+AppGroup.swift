@@ -13,10 +13,10 @@ extension UserDefaults {
         set { UserDefaults.appGroup.set(newValue, forKey: .glassesOfToday) }
     }
     
-    static var appGroup: UserDefaults {
+    static let appGroup: UserDefaults = {
         guard let appGroupUserDefaults = UserDefaults(suiteName: .appGroupId) else {
             fatalError("Undefined App Group, Please check capabilities")
         }
         return appGroupUserDefaults
-    }
+    }()
 }

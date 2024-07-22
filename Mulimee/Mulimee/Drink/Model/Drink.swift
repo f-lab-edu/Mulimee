@@ -8,17 +8,24 @@
 import Combine
 import Foundation
 
-struct Drink {
+final class Drink {
     private let repository: Repository
     
     private let numberOfGlassesPublisher: CurrentValueSubject<Int, Never>
     var numberOfGlasses: AnyPublisher<Int, Never> {
         numberOfGlassesPublisher.eraseToAnyPublisher()
     }
+    private var cancellables = Set<AnyCancellable>()
     
     init(repository: Repository) {
         self.repository = repository
         self.numberOfGlassesPublisher = .init(repository.fetchDrink())
+        
+        UserDefaults.appGroup.publisher(for: \.glassesOfToday)
+            .sink { [unowned self] numberOfGlass in
+                numberOfGlassesPublisher.send(numberOfGlass)
+            }
+            .store(in: &cancellables)
     }
     
     func drinkWater() {
@@ -31,9 +38,7 @@ struct Drink {
     }
     
     func reset() {
-        numberOfGlasses = .zero
+        numberOfGlassesPublisher.send(.zero)
         repository.reset()
-}
-    }
-    }
+	}
 }

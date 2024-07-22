@@ -20,10 +20,12 @@ final class RepositoryImpl: Repository {
     }
     
     func setDrink(with value: Int) {
-        UserDefaults.appGroup.setValue(value, forKey: .glassesOfToday)
+        UserDefaults.appGroup.glassesOfToday = value
         WidgetCenter.shared.reloadAllTimelines()
+    }
     
     func reset() {
         UserDefaults.appGroup.glassesOfToday = .zero
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }

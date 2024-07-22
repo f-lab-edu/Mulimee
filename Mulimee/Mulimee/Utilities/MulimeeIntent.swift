@@ -13,11 +13,14 @@ struct MulimeeIntent: AppIntent {
     static var description = IntentDescription("Glasses of Today counter")
     
     private let repository: Repository = RepositoryImpl()
+    private var numberOfGlasses: Int
+    
+    init() {
+        self.numberOfGlasses = repository.fetchDrink()
+    }
     
     func perform() async throws -> some IntentResult {
-        var numberOfGlasses = repository.fetchDrink()
-        numberOfGlasses.increment()
-        repository.setDrink(with: numberOfGlasses)
+        repository.setDrink(with: numberOfGlasses + 1)
         return .result()
     }
 }

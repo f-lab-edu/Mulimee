@@ -34,6 +34,7 @@ final class DrinkViewModel: ObservableObject {
     
     private func bind(_ numberOfGlassesPublisher: AnyPublisher<Int, Never>) {
         numberOfGlassesPublisher
+            .receive(on: DispatchQueue.main)
             .assign(to: \.numberOfGlasses, on: self)
             .store(in: &self.cancellables)
     }
