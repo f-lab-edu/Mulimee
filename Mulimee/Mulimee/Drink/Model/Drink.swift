@@ -16,10 +16,6 @@ final class Drink: ObservableObject {
     }
     let numberOfGlassesPublisher: CurrentValueSubject<Int, Never>
     
-    var waterWaveProgress: CGFloat {
-        CGFloat(numberOfGlasses) / 8
-    }
-    
     init(numberOfGlasses: Int, repository: Repository) {
         self.numberOfGlasses = numberOfGlasses
         self.repository = repository
