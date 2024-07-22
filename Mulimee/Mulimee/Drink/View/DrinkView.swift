@@ -30,15 +30,30 @@ struct DrinkView: View {
                 }
                 .padding()
                 
-                Button {
-                    viewModel.drinkWater()
-                } label: {
-                    Text("벌컥")
-                        .font(.title)
-                        .padding()
-                        .background(.teal)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                HStack {
+                    Button {
+                        viewModel.drinkWater()
+                    } label: {
+                        Text("마시기")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .padding()
+                            .background(.teal)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    
+                    Button {
+                        viewModel.reset()
+                    } label: {
+                        Text("초기화")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .padding()
+                            .background(.white)
+                            .foregroundColor(.black)
+                            .cornerRadius(10)
+                    }
                 }
             }
         }
