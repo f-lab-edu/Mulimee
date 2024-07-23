@@ -8,7 +8,7 @@
 import Foundation
 
 extension String {
-    static let appGroupId = "group.io.gaeng2y.mulimee"
+    static let appGroupId = "group.com.gaeng2y.mulimee"
     static let widgetKind: String = "MulimeeWidget"
     
     static var glassesOfToday: String {
