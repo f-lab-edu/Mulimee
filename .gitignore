@@ -61,5 +61,6 @@ playground.xcworkspace
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
+Mulimee/Mulimee.xcodeproj/xcuserdata/gaeng2y.xcuserdatad/xcschemes/*.plist
 
 .DS_Store
