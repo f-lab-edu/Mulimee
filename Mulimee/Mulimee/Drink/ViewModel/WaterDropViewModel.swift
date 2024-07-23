@@ -20,6 +20,7 @@ final class WaterDropViewModel: ObservableObject {
     
     private func bind(_ numberOfGlassesPublisher: AnyPublisher<Int, Never>) {
         numberOfGlassesPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] numberOfGlasses in
                 self?.waterWaveProgress = CGFloat(numberOfGlasses) / 8
             }

@@ -12,7 +12,7 @@ struct DrinkView: View {
     
     var body: some View {
         ZStack {
-            Color("FogMist", bundle: .main)
+            Color(.fogMist)
                 .ignoresSafeArea()
             VStack {
                 ZStack {
