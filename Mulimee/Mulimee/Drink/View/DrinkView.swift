@@ -34,14 +34,15 @@ struct DrinkView: View {
                     Button {
                         viewModel.drinkWater()
                     } label: {
-                        Text("마시기")
+                        Text(viewModel.drinkButtonTitle)
                             .font(.headline)
                             .fontWeight(.bold)
                             .padding()
-                            .background(.teal)
+                            .background(viewModel.drinkButtonBackgroundColor)
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
+                    .disabled(viewModel.isDisabledDrinkButton)
                     
                     Button {
                         viewModel.reset()
@@ -54,6 +55,7 @@ struct DrinkView: View {
                             .foregroundColor(.black)
                             .cornerRadius(10)
                     }
+                    
                 }
             }
         }
