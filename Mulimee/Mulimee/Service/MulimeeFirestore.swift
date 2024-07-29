@@ -33,7 +33,14 @@ final class MulimeeFirestore: Sendable {
         
         return collectionListner.document(documentPath)
             .snapshotPublisher()
-            .tryMap { try $0.data(as: Water.self) }
+            .tryMap {
+                guard $0.exists else {
+                    let water = Water(glasses: 0)
+                    let _ = collectionListner.document(documentPath).setData(from: water)
+                    return water
+                }
+                return try $0.data(as: Water.self)
+            }
             .eraseToAnyPublisher()
     }
     

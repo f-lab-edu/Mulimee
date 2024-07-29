@@ -39,6 +39,7 @@ final class Drink {
             .sink { completion in
                 switch completion {
                 case .failure(let error):
+                    // TODO: - publisher 다시 연결하기?
                     fatalError(error.localizedDescription)
                 case .finished:
                     print("finish")
