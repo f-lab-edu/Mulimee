@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct MulimeeApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     private let repository: Repository = RepositoryImpl()
     
     var body: some Scene {
