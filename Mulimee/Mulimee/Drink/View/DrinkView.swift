@@ -59,6 +59,11 @@ struct DrinkView: View {
                 }
             }
         }
+        .alert("문제가 발생했어요!", isPresented: $viewModel.showAlert) {
+            Button("OK", role: .cancel) {
+                viewModel.showAlert.toggle()
+            }
+        }
     }
 }
 

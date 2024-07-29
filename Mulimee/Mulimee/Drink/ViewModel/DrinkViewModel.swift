@@ -15,6 +15,7 @@ final class DrinkViewModel: ObservableObject {
         didSet { isDisabledDrinkButton = numberOfGlasses == 8 }
     }
     @Published private(set) var isDisabledDrinkButton = false
+    @Published var showAlert: Bool = false
     
     var drinkButtonBackgroundColor: Color {
         isDisabledDrinkButton ? .black : .teal
@@ -53,8 +54,8 @@ final class DrinkViewModel: ObservableObject {
         do {
             try await drink.drinkWater()
         } catch {
-            // TODO: - Error 만들고 메세지 날려주기
             print(error.localizedDescription)
+            showAlert.toggle()
         }
     }
     
@@ -62,8 +63,8 @@ final class DrinkViewModel: ObservableObject {
         do {
             try await drink.reset()
         } catch {
-            // TODO: - Error 만들고 메세지 날려주기
             print(error.localizedDescription)
+            showAlert.toggle()
         }
     }
 }
