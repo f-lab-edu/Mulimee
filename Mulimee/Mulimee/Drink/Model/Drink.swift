@@ -16,6 +16,10 @@ final class Drink {
     private let repository: DrinkRepository
     private var cancellables = Set<AnyCancellable>()
     
+    var glasses: Int {
+        numberOfGlassesPublisher.value
+    }
+    
     init(repository: DrinkRepository) {
         self.repository = repository
         self.numberOfGlassesPublisher = .init(0)
@@ -27,6 +31,7 @@ final class Drink {
         guard numberOfGlassesPublisher.value < 8 else {
             return
         }
+        numberOfGlassesPublisher.send(glasses + 1)
         try await repository.setDrink()
     }
     
@@ -48,6 +53,10 @@ final class Drink {
                 self?.numberOfGlassesPublisher.send(water.glasses)
             }
             .store(in: &cancellables)
+    }
+    
+    func restore() {
+        numberOfGlassesPublisher.send(glasses - 1)
     }
 }
 

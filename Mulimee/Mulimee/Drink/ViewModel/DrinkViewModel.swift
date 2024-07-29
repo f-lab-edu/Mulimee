@@ -54,7 +54,7 @@ final class DrinkViewModel: ObservableObject {
         do {
             try await drink.drinkWater()
         } catch {
-            print(error.localizedDescription)
+            drink.restore()
             showAlert.toggle()
         }
     }
