@@ -9,36 +9,44 @@ import Combine
 import Foundation
 
 final class Drink {
-    private let repository: Repository
-    
     private let numberOfGlassesPublisher: CurrentValueSubject<Int, Never>
     var numberOfGlasses: AnyPublisher<Int, Never> {
         numberOfGlassesPublisher.eraseToAnyPublisher()
     }
+    private let repository: DrinkRepository
     private var cancellables = Set<AnyCancellable>()
     
-    init(repository: Repository) {
+    init(repository: DrinkRepository) {
         self.repository = repository
-        self.numberOfGlassesPublisher = .init(repository.fetchDrink())
+        self.numberOfGlassesPublisher = .init(0)
         
-        UserDefaults.appGroup.publisher(for: \.glassesOfToday)
-            .sink { [unowned self] numberOfGlass in
-                numberOfGlassesPublisher.send(numberOfGlass)
-            }
-            .store(in: &cancellables)
+        self.bind()
     }
     
-    func drinkWater() {
+    func drinkWater() async throws {
         guard numberOfGlassesPublisher.value < 8 else {
             return
         }
-        let numberOfGlasses = numberOfGlassesPublisher.value + 1
-        repository.setDrink(with: numberOfGlasses)
-        numberOfGlassesPublisher.send(numberOfGlasses)
+        try await repository.setDrink()
     }
     
-    func reset() {
-        numberOfGlassesPublisher.send(.zero)
-        repository.reset()
-	}
+    func reset() async throws {
+        try await repository.reset()
+    }
+    
+    private func bind() {
+        repository.glassPublisher
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    fatalError(error.localizedDescription)
+                case .finished:
+                    print("finish")
+                }
+            } receiveValue: { [weak self] water in
+                self?.numberOfGlassesPublisher.send(water.glasses)
+            }
+            .store(in: &cancellables)
+    }
 }
+

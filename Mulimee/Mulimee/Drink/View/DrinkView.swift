@@ -32,7 +32,7 @@ struct DrinkView: View {
                 
                 HStack {
                     Button {
-                        viewModel.drinkWater()
+                        Task { await viewModel.drinkWater() }
                     } label: {
                         Text(viewModel.drinkButtonTitle)
                             .font(.headline)
@@ -45,7 +45,7 @@ struct DrinkView: View {
                     .disabled(viewModel.isDisabledDrinkButton)
                     
                     Button {
-                        viewModel.reset()
+                        Task { await viewModel.reset() }
                     } label: {
                         Text("초기화")
                             .font(.headline)
@@ -64,5 +64,5 @@ struct DrinkView: View {
 
 #Preview {
     DrinkView()
-        .environmentObject(DrinkViewModel(drink: .init(repository: RepositoryImpl())))
+        .environmentObject(DrinkViewModel(drink: .init(repository: DrinkRepositoryService())))
 }

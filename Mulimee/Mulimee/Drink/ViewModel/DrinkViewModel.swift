@@ -15,6 +15,7 @@ final class DrinkViewModel: ObservableObject {
         didSet { isDisabledDrinkButton = numberOfGlasses == 8 }
     }
     @Published private(set) var isDisabledDrinkButton = false
+    
     var drinkButtonBackgroundColor: Color {
         isDisabledDrinkButton ? .black : .teal
     }
@@ -48,11 +49,21 @@ final class DrinkViewModel: ObservableObject {
             .store(in: &self.cancellables)
     }
     
-    func drinkWater() {
-        drink.drinkWater()
+    func drinkWater() async {
+        do {
+            try await drink.drinkWater()
+        } catch {
+            // TODO: - Error 만들고 메세지 날려주기
+            print(error.localizedDescription)
+        }
     }
     
-    func reset() {
-        drink.reset()
+    func reset() async {
+        do {
+            try await drink.reset()
+        } catch {
+            // TODO: - Error 만들고 메세지 날려주기
+            print(error.localizedDescription)
+        }
     }
 }
