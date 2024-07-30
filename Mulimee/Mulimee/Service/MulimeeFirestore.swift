@@ -44,6 +44,14 @@ final class MulimeeFirestore: Sendable {
             .eraseToAnyPublisher()
     }
     
+    func fetch(userId: String) async throws -> Water {
+        let collectionPath = "\(Constant.drink)/\(userId)/\(Constant.water)"
+        let collectionListner = Firestore.firestore().collection(collectionPath)
+        let documentPath = dateFormatter.string(from: .now)
+        
+        return try await collectionListner.document(documentPath).getDocument(as: Water.self)
+    }
+    
     func drink(userId: String) async throws {
         let collectionPath = "\(Constant.drink)/\(userId)/\(Constant.water)"
         let collectionListner = Firestore.firestore().collection(collectionPath)

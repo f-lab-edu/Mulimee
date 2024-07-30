@@ -12,6 +12,7 @@ import WidgetKit
 protocol DrinkRepository: Sendable {
     var glassPublisher: AnyPublisher<Water, Error> { get }
     
+    func fetchDrink() async throws -> Water
     func setDrink() async throws
     func reset() async throws
 }
@@ -21,6 +22,10 @@ final class DrinkRepositoryService: DrinkRepository {
     
     var glassPublisher: AnyPublisher<Water, any Error> {
         mulimeeFirestore.documentPublisher(userId: "1")
+    }
+    
+    func fetchDrink() async throws -> Water {
+        try await mulimeeFirestore.fetch(userId: "1")
     }
     
     func setDrink() async throws {
