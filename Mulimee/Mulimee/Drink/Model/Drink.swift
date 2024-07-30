@@ -9,36 +9,54 @@ import Combine
 import Foundation
 
 final class Drink {
-    private let repository: Repository
-    
     private let numberOfGlassesPublisher: CurrentValueSubject<Int, Never>
     var numberOfGlasses: AnyPublisher<Int, Never> {
         numberOfGlassesPublisher.eraseToAnyPublisher()
     }
+    private let repository: DrinkRepository
     private var cancellables = Set<AnyCancellable>()
     
-    init(repository: Repository) {
+    var glasses: Int {
+        numberOfGlassesPublisher.value
+    }
+    
+    init(repository: DrinkRepository) {
         self.repository = repository
-        self.numberOfGlassesPublisher = .init(repository.fetchDrink())
+        self.numberOfGlassesPublisher = .init(0)
         
-        UserDefaults.appGroup.publisher(for: \.glassesOfToday)
-            .sink { [unowned self] numberOfGlass in
-                numberOfGlassesPublisher.send(numberOfGlass)
+        self.bind()
+    }
+    
+    func drinkWater() async throws {
+        guard numberOfGlassesPublisher.value < 8 else {
+            return
+        }
+        numberOfGlassesPublisher.send(glasses + 1)
+        try await repository.setDrink()
+    }
+    
+    func reset() async throws {
+        try await repository.reset()
+    }
+    
+    private func bind() {
+        repository.glassPublisher
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    // TODO: - publisher 다시 연결하기?
+                    fatalError(error.localizedDescription)
+                case .finished:
+                    print("finish")
+                }
+            } receiveValue: { [weak self] water in
+                self?.numberOfGlassesPublisher.send(water.glasses)
             }
             .store(in: &cancellables)
     }
     
-    func drinkWater() {
-        guard numberOfGlassesPublisher.value < 8 else {
-            return
-        }
-        let numberOfGlasses = numberOfGlassesPublisher.value + 1
-        repository.setDrink(with: numberOfGlasses)
-        numberOfGlassesPublisher.send(numberOfGlasses)
+    func restore() {
+        numberOfGlassesPublisher.send(glasses - 1)
     }
-    
-    func reset() {
-        numberOfGlassesPublisher.send(.zero)
-        repository.reset()
-	}
 }
+
