@@ -24,7 +24,9 @@ final class Drink {
         self.repository = repository
         self.numberOfGlassesPublisher = .init(0)
         
-        self.bind()
+        Task {
+            await bind()
+        }
     }
     
     func drinkWater() async throws {
@@ -39,13 +41,25 @@ final class Drink {
         try await repository.reset()
     }
     
-    private func bind() {
+    private func bind() async {
+        guard await repository.isExistDocument() else {
+            repository.createDocument()
+                .sink { completion in
+                    print(completion)
+                } receiveValue: { _ in
+                    Task { [weak self] in
+                        await self?.bind()
+                    }
+                }
+                .store(in: &cancellables)
+            return
+        }
+        
         repository.glassPublisher
             .sink { completion in
                 switch completion {
                 case .failure(let error):
-                    // TODO: - publisher 다시 연결하기?
-                    fatalError(error.localizedDescription)
+                    print(error.localizedDescription)
                 case .finished:
                     print("finish")
                 }
