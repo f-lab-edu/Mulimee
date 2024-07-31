@@ -5,23 +5,19 @@
 //  Created by Kyeongmo Yang on 7/19/24.
 //
 
-import WidgetKit
 import SwiftUI
+import WidgetKit
 
 struct Provider: AppIntentTimelineProvider {
-    private let repository: Repository = RepositoryImpl()
-    
     func placeholder(in context: Context) -> MulimeeEntry {
-        let numberOfGlasses = repository.fetchDrink()
-        return MulimeeEntry(date: .now,
-                            numberOfGlasses: numberOfGlasses,
-                            configuration: ConfigurationAppIntent())
+        MulimeeEntry(date: .now,
+                     numberOfGlasses: 0,
+                     configuration: ConfigurationAppIntent())
     }
     
     func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> MulimeeEntry {
-        let numberOfGlasses = repository.fetchDrink()
         return MulimeeEntry(date: .now,
-                            numberOfGlasses: numberOfGlasses,
+                            numberOfGlasses: 0,
                             configuration: ConfigurationAppIntent())
     }
     
@@ -32,9 +28,8 @@ struct Provider: AppIntentTimelineProvider {
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let numberOfGlasses = repository.fetchDrink()
             let entry = MulimeeEntry(date: entryDate,
-                                numberOfGlasses: numberOfGlasses,
+                                numberOfGlasses: 0,
                                 configuration: ConfigurationAppIntent())
             entries.append(entry)
         }
