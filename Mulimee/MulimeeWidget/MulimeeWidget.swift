@@ -9,6 +9,8 @@ import SwiftUI
 import WidgetKit
 
 struct Provider: AppIntentTimelineProvider {
+    private let repository: DrinkRepository = DrinkRepositoryService()
+    
     func placeholder(in context: Context) -> MulimeeEntry {
         MulimeeEntry(date: .now,
                      numberOfGlasses: 0,
@@ -16,8 +18,9 @@ struct Provider: AppIntentTimelineProvider {
     }
     
     func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> MulimeeEntry {
+        let glasses = try? await repository.fetchDrink().glasses
         return MulimeeEntry(date: .now,
-                            numberOfGlasses: 0,
+                            numberOfGlasses: glasses ?? 0,
                             configuration: ConfigurationAppIntent())
     }
     
@@ -28,8 +31,9 @@ struct Provider: AppIntentTimelineProvider {
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+            let glasses = try? await repository.fetchDrink().glasses
             let entry = MulimeeEntry(date: entryDate,
-                                numberOfGlasses: 0,
+                                numberOfGlasses: glasses ?? 0,
                                 configuration: ConfigurationAppIntent())
             entries.append(entry)
         }

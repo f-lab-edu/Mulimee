@@ -21,6 +21,7 @@
 		CE43FF8C2C3D6FCD00309DE2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43FF8B2C3D6FCD00309DE2 /* MainView.swift */; };
 		CE43FF8F2C3D725700309DE2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CE43FF8E2C3D725700309DE2 /* Lottie */; };
 		CE4A18EF2C301CAA007D2279 /* GlareCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */; };
+		CE7E4F832C59433D00E4DF54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEDDD5CC2C513F55008D8CE4 /* GoogleService-Info.plist */; };
 		CE88BF332C2D9C2C00C6081F /* WaterWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */; };
 		CE88BF352C2DAB8F00C6081F /* WaterDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88BF342C2DAB8F00C6081F /* WaterDropView.swift */; };
 		CE9BD4212C4AB2B100A40A68 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9BD4202C4AB2B100A40A68 /* WidgetKit.framework */; };
@@ -501,6 +502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE9BD42C2C4AB2B200A40A68 /* Assets.xcassets in Resources */,
+				CE7E4F832C59433D00E4DF54 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
