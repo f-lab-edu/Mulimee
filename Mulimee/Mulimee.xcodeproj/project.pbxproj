@@ -21,6 +21,7 @@
 		CE43FF8C2C3D6FCD00309DE2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43FF8B2C3D6FCD00309DE2 /* MainView.swift */; };
 		CE43FF8F2C3D725700309DE2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CE43FF8E2C3D725700309DE2 /* Lottie */; };
 		CE4A18EF2C301CAA007D2279 /* GlareCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */; };
+		CE70B6622C5FBF0100E065FB /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6612C5FBF0100E065FB /* HistoryView.swift */; };
 		CE7E4F832C59433D00E4DF54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEDDD5CC2C513F55008D8CE4 /* GoogleService-Info.plist */; };
 		CE88BF332C2D9C2C00C6081F /* WaterWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */; };
 		CE88BF352C2DAB8F00C6081F /* WaterDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88BF342C2DAB8F00C6081F /* WaterDropView.swift */; };
@@ -103,6 +104,7 @@
 		CE4218BB2C2B1AC4005DA37D /* DrinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkViewModel.swift; sourceTree = "<group>"; };
 		CE43FF8B2C3D6FCD00309DE2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlareCircleView.swift; sourceTree = "<group>"; };
+		CE70B6612C5FBF0100E065FB /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWaveView.swift; sourceTree = "<group>"; };
 		CE88BF342C2DAB8F00C6081F /* WaterDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterDropView.swift; sourceTree = "<group>"; };
 		CE9BD41E2C4AB2B100A40A68 /* MulimeeWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MulimeeWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,14 +181,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CE14C0F52C540DAA009932E4 /* Service */ = {
+		CE70B65C2C5FB61300E065FB /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CE14C0FC2C57B99D009932E4 /* Water.swift */,
 				CEB3F4092C39112100C86FB8 /* DrinkRepository.swift */,
 				CE14C0E12C53ED37009932E4 /* MulimeeFirestore.swift */,
-				CE14C0FC2C57B99D009932E4 /* Water.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		CE70B65D2C5FB62800E065FB /* History */ = {
+			isa = PBXGroup;
+			children = (
+				CE70B6602C5FBEF800E065FB /* Model */,
+				CE70B65F2C5FBEF600E065FB /* View */,
+				CE70B65E2C5FBEF300E065FB /* ViewModel */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		CE70B65E2C5FBEF300E065FB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CE70B65F2C5FBEF600E065FB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE70B6612C5FBF0100E065FB /* HistoryView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE70B6602C5FBEF800E065FB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CE9BD4192C4AB0A000A40A68 /* App */ = {
@@ -250,9 +284,9 @@
 				CE9D498D2C232A3E005021CF /* Mulimee.entitlements */,
 				CEDDD5CC2C513F55008D8CE4 /* GoogleService-Info.plist */,
 				CE9BD4192C4AB0A000A40A68 /* App */,
-				CE14C0F52C540DAA009932E4 /* Service */,
 				CEB3F40F2C392B7A00C86FB8 /* Splash */,
 				CEB3F4032C3910CF00C86FB8 /* Drink */,
+				CE70B65D2C5FB62800E065FB /* History */,
 				CEB3F4102C392B8300C86FB8 /* Utilities */,
 				CEB3F4192C392C3F00C86FB8 /* Resources */,
 				CE9D498E2C232A3E005021CF /* Preview Content */,
@@ -288,6 +322,7 @@
 		CEB3F4032C3910CF00C86FB8 /* Drink */ = {
 			isa = PBXGroup;
 			children = (
+				CE70B65C2C5FB61300E065FB /* Service */,
 				CEB3F4062C3910E500C86FB8 /* Model */,
 				CEB3F4072C3910F400C86FB8 /* View */,
 				CEB3F4082C3910FC00C86FB8 /* ViewModel */,
@@ -573,6 +608,7 @@
 				CEB3F4052C3910DD00C86FB8 /* WaterDropViewModel.swift in Sources */,
 				CE43FF8C2C3D6FCD00309DE2 /* MainView.swift in Sources */,
 				CE9BD4402C4AC7D600A40A68 /* MulimeeIntent.swift in Sources */,
+				CE70B6622C5FBF0100E065FB /* HistoryView.swift in Sources */,
 				CEDDD5CF2C513F79008D8CE4 /* AppDelegate.swift in Sources */,
 				CEB3F40A2C39112100C86FB8 /* DrinkRepository.swift in Sources */,
 			);
