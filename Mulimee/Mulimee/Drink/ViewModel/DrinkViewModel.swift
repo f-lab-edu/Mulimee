@@ -40,14 +40,23 @@ final class DrinkViewModel: ObservableObject {
     init(drink: Drink) {
         self.drink = drink
         
-        bind(drink.numberOfGlasses)
+        bind()
     }
     
-    private func bind(_ numberOfGlassesPublisher: AnyPublisher<Int, Never>) {
-        numberOfGlassesPublisher
+    private func bind() {
+        drink.numberOfGlasses
             .receive(on: DispatchQueue.main)
             .assign(to: \.numberOfGlasses, on: self)
             .store(in: &self.cancellables)
+        
+        drink.drinkError
+            .sink { [unowned self] completion in
+                switch completion {
+                case .finished: return
+                case .failure: showAlert.toggle()
+                }
+            } receiveValue: {}
+            .store(in: &cancellables)
     }
     
     func drinkWater() async {

@@ -34,12 +34,24 @@ final class MulimeeFirestore: Sendable {
         }
     }
     
-    func createDocument(userId: String) -> Future<Void, Error> {
+    func createDocument(userId: String) async throws {
         let collectionPath = "\(Constant.drink)/\(userId)/\(Constant.water)"
-        let collectionListner = Firestore.firestore().collection(collectionPath)
+        let collectionListener = Firestore.firestore().collection(collectionPath)
         let documentPath = dateFormatter.string(from: .now)
         
-        return collectionListner.document(documentPath).setData(from: Water(glasses: 0))
+        let _: Void = try await withCheckedThrowingContinuation { continuation in
+            do {
+                try collectionListener.document(documentPath).setData(from: Water(glasses: 0)) { error in
+                    if let error = error {
+                        continuation.resume(throwing: error)
+                    } else {
+                        continuation.resume(returning: ())
+                    }
+                }
+            } catch {
+                continuation.resume(throwing: error)
+            }
+        }
     }
     
     func documentPublisher(userId: String) -> AnyPublisher<Water, any Error> {

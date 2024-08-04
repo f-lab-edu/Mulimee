@@ -9,31 +9,47 @@ import Combine
 import Foundation
 
 final class Drink {
-    private let numberOfGlassesPublisher: CurrentValueSubject<Int, Never>
-    var numberOfGlasses: AnyPublisher<Int, Never> {
-        numberOfGlassesPublisher.eraseToAnyPublisher()
-    }
     private let repository: DrinkRepository
+    
+    private let numberOfGlassesSubject: CurrentValueSubject<Int, Never>
+    var numberOfGlasses: AnyPublisher<Int, Never> {
+        numberOfGlassesSubject.eraseToAnyPublisher()
+    }
+    private let errorSubject = PassthroughSubject<Void, Error>()
+    var drinkError: AnyPublisher<Void, Error> {
+        errorSubject.eraseToAnyPublisher()
+    }
+    
     private var cancellables = Set<AnyCancellable>()
     
     var glasses: Int {
-        numberOfGlassesPublisher.value
+        numberOfGlassesSubject.value
     }
     
     init(repository: DrinkRepository) {
         self.repository = repository
-        self.numberOfGlassesPublisher = .init(0)
+        self.numberOfGlassesSubject = .init(0)
         
         Task {
-            await bind()
+            guard await repository.isExistDocument else {
+                do {
+                    try await repository.createDocument()
+                    await bind()
+                } catch {
+                    errorSubject.send(completion: .failure(error))
+                }
+                return
+            }
+            
+            await self.bind()
         }
     }
     
     func drinkWater() async throws {
-        guard numberOfGlassesPublisher.value < 8 else {
+        guard numberOfGlassesSubject.value < 8 else {
             return
         }
-        numberOfGlassesPublisher.send(glasses + 1)
+        numberOfGlassesSubject.send(glasses + 1)
         try await repository.setDrink()
     }
     
@@ -42,19 +58,6 @@ final class Drink {
     }
     
     private func bind() async {
-        guard await repository.isExistDocument() else {
-            repository.createDocument()
-                .sink { completion in
-                    print(completion)
-                } receiveValue: { _ in
-                    Task { [weak self] in
-                        await self?.bind()
-                    }
-                }
-                .store(in: &cancellables)
-            return
-        }
-        
         repository.glassPublisher
             .sink { completion in
                 switch completion {
@@ -64,13 +67,13 @@ final class Drink {
                     print("finish")
                 }
             } receiveValue: { [weak self] water in
-                self?.numberOfGlassesPublisher.send(water.glasses)
+                self?.numberOfGlassesSubject.send(water.glasses)
             }
             .store(in: &cancellables)
     }
     
     func restore() {
-        numberOfGlassesPublisher.send(glasses - 1)
+        numberOfGlassesSubject.send(glasses - 1)
     }
 }
 
