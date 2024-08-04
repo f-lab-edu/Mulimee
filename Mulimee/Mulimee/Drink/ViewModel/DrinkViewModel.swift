@@ -15,6 +15,8 @@ final class DrinkViewModel: ObservableObject {
         didSet { isDisabledDrinkButton = numberOfGlasses == 8 }
     }
     @Published private(set) var isDisabledDrinkButton = false
+    @Published var showAlert: Bool = false
+    
     var drinkButtonBackgroundColor: Color {
         isDisabledDrinkButton ? .black : .teal
     }
@@ -38,21 +40,41 @@ final class DrinkViewModel: ObservableObject {
     init(drink: Drink) {
         self.drink = drink
         
-        bind(drink.numberOfGlasses)
+        bind()
     }
     
-    private func bind(_ numberOfGlassesPublisher: AnyPublisher<Int, Never>) {
-        numberOfGlassesPublisher
+    private func bind() {
+        drink.numberOfGlasses
             .receive(on: DispatchQueue.main)
             .assign(to: \.numberOfGlasses, on: self)
             .store(in: &self.cancellables)
+        
+        drink.drinkError
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] completion in
+                switch completion {
+                case .finished: return
+                case .failure: showAlert.toggle()
+                }
+            } receiveValue: {}
+            .store(in: &cancellables)
     }
     
-    func drinkWater() {
-        drink.drinkWater()
+    func drinkWater() async {
+        do {
+            try await drink.drinkWater()
+        } catch {
+            drink.restore()
+            showAlert.toggle()
+        }
     }
     
-    func reset() {
-        drink.reset()
+    func reset() async {
+        do {
+            try await drink.reset()
+        } catch {
+            print(error.localizedDescription)
+            showAlert.toggle()
+        }
     }
 }
