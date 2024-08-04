@@ -50,6 +50,7 @@ final class DrinkViewModel: ObservableObject {
             .store(in: &self.cancellables)
         
         drink.drinkError
+            .receive(on: DispatchQueue.main)
             .sink { [unowned self] completion in
                 switch completion {
                 case .finished: return
