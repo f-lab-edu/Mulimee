@@ -11,10 +11,6 @@ import FirebaseFirestoreSwift
 import FirebaseFirestoreCombineSwift
 import Foundation
 
-enum FirestoreError: Error {
-    case saveError(Error?)
-}
-
 final class MulimeeFirestore: Sendable {
     private enum Constant {
         static let drink = "drink"
@@ -26,6 +22,38 @@ final class MulimeeFirestore: Sendable {
         return df
     }()
     
+    func isExistDocument(userId: String) async -> Bool {
+        let collectionPath = "\(Constant.drink)/\(userId)/\(Constant.water)"
+        let collectionListner = Firestore.firestore().collection(collectionPath)
+        let documentPath = dateFormatter.string(from: .now)
+        
+        do {
+            return try await collectionListner.document(documentPath).getDocument().exists
+        } catch {
+            return false
+        }
+    }
+    
+    func createDocument(userId: String) async throws {
+        let collectionPath = "\(Constant.drink)/\(userId)/\(Constant.water)"
+        let collectionListener = Firestore.firestore().collection(collectionPath)
+        let documentPath = dateFormatter.string(from: .now)
+        
+        let _: Void = try await withCheckedThrowingContinuation { continuation in
+            do {
+                try collectionListener.document(documentPath).setData(from: Water(glasses: 0)) { error in
+                    if let error = error {
+                        continuation.resume(throwing: error)
+                    } else {
+                        continuation.resume(returning: ())
+                    }
+                }
+            } catch {
+                continuation.resume(throwing: error)
+            }
+        }
+    }
+    
     func documentPublisher(userId: String) -> AnyPublisher<Water, any Error> {
         let collectionPath = "\(Constant.drink)/\(userId)/\(Constant.water)"
         let collectionListner = Firestore.firestore().collection(collectionPath)
@@ -33,14 +61,7 @@ final class MulimeeFirestore: Sendable {
         
         return collectionListner.document(documentPath)
             .snapshotPublisher()
-            .tryMap {
-                guard $0.exists else {
-                    let water = Water(glasses: 0)
-                    let _ = collectionListner.document(documentPath).setData(from: water)
-                    return water
-                }
-                return try $0.data(as: Water.self)
-            }
+            .tryMap { try $0.data(as: Water.self) }
             .eraseToAnyPublisher()
     }
     

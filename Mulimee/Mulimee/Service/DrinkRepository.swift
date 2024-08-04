@@ -11,7 +11,9 @@ import WidgetKit
 
 protocol DrinkRepository: Sendable {
     var glassPublisher: AnyPublisher<Water, Error> { get }
+    var isExistDocument: Bool { get async }
     
+    func createDocument() async throws
     func fetchDrink() async throws -> Water
     func setDrink() async throws
     func reset() async throws
@@ -22,6 +24,16 @@ final class DrinkRepositoryService: DrinkRepository {
     
     var glassPublisher: AnyPublisher<Water, any Error> {
         mulimeeFirestore.documentPublisher(userId: "1")
+    }
+    
+    var isExistDocument: Bool {
+        get async {
+            await mulimeeFirestore.isExistDocument(userId: "1")
+        }
+    }
+    
+    func createDocument() async throws {
+        try await mulimeeFirestore.createDocument(userId: "1")
     }
     
     func fetchDrink() async throws -> Water {
