@@ -90,4 +90,26 @@ final class HealthKitStore {
             healthStore.execute(query)
         }
     }
+    
+    func saveWaterIntake() async throws {
+        guard let waterType = HKObjectType.quantityType(forIdentifier: .dietaryWater) else {
+            throw HealthKitError.failedQuantityType
+        }
+            
+        let waterQuantity = HKQuantity(unit: .literUnit(with: .milli), doubleValue: Constant.aGlassOfWater)
+        let waterSample = HKQuantitySample(type: waterType, quantity: waterQuantity, start: .now, end: .now)
+            
+        try await healthStore.save(waterSample)
+    }
+    
+    func reset() async throws {
+        guard let waterType = HKObjectType.quantityType(forIdentifier: .dietaryWater) else {
+            throw HealthKitError.failedQuantityType
+        }
+            
+        let waterQuantity = HKQuantity(unit: .literUnit(with: .milli), doubleValue: 0)
+        let waterSample = HKQuantitySample(type: waterType, quantity: waterQuantity, start: .now, end: .now)
+            
+        try await healthStore.save(waterSample)
+    }
 }
