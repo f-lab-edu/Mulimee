@@ -32,6 +32,7 @@ struct MainView: View {
                     }
                 
                 HistoryView()
+                    .environmentObject(HistoryViewModel())
                     .tabItem {
                         Image(systemName: "calendar")
                         Text("기록")
