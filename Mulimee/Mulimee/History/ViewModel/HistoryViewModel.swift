@@ -11,13 +11,22 @@ final class HistoryViewModel: ObservableObject {
     private let repository: HealthKitRepository = HealthKitService()
     
     private var year: Int
-    private var month: Int {
-        didSet { dateString = "\(year)년 \(month)월" }
-    }
-    @Published var dateString: String = ""
+    private var month: Int
+    var dateString: String
     @Published private(set) var histories: [History] = []
+    @Published var showAuthorizationAlert = false
     
     private let calendar = Calendar.current
+    
+    var isHealthKitAuthorized: HealthKitAuthorizationStatus {
+        let isAuthorized = repository.isAuthorized
+        if isAuthorized == .sharingDenied {
+            Task { @MainActor in
+                showAuthorizationAlert = true
+            }
+        }
+        return isAuthorized
+    }
     
     init() {
         let now = Date.now

@@ -26,7 +26,7 @@
 		CE70B6662C60E1BA00E065FB /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
 		CE70B6692C60E78500E065FB /* HealthKitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6682C60E78500E065FB /* HealthKitRepository.swift */; };
 		CE70B66D2C60EB7B00E065FB /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B66C2C60EB7B00E065FB /* HistoryItem.swift */; };
-		CE70B66F2C61018E00E065FB /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B66E2C61018E00E065FB /* HealthKitManager.swift */; };
+		CE70B66F2C61018E00E065FB /* HealthKitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B66E2C61018E00E065FB /* HealthKitStore.swift */; };
 		CE70B6712C62409900E065FB /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6702C62409900E065FB /* ImageButton.swift */; };
 		CE7E4F832C59433D00E4DF54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEDDD5CC2C513F55008D8CE4 /* GoogleService-Info.plist */; };
 		CE88BF332C2D9C2C00C6081F /* WaterWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */; };
@@ -115,7 +115,7 @@
 		CE70B6652C60E1BA00E065FB /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		CE70B6682C60E78500E065FB /* HealthKitRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitRepository.swift; sourceTree = "<group>"; };
 		CE70B66C2C60EB7B00E065FB /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
-		CE70B66E2C61018E00E065FB /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		CE70B66E2C61018E00E065FB /* HealthKitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitStore.swift; sourceTree = "<group>"; };
 		CE70B6702C62409900E065FB /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWaveView.swift; sourceTree = "<group>"; };
 		CE88BF342C2DAB8F00C6081F /* WaterDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterDropView.swift; sourceTree = "<group>"; };
@@ -244,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				CE70B6682C60E78500E065FB /* HealthKitRepository.swift */,
+				CE70B66E2C61018E00E065FB /* HealthKitStore.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -397,7 +398,6 @@
 				CEB3F40B2C39120A00C86FB8 /* UserDefaults+AppGroup.swift */,
 				CEB3F40D2C3912C700C86FB8 /* String+UserDefaultKey.swift */,
 				CE9BD43F2C4AC7D600A40A68 /* MulimeeIntent.swift */,
-				CE70B66E2C61018E00E065FB /* HealthKitManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -636,7 +636,7 @@
 				CE70B6662C60E1BA00E065FB /* History.swift in Sources */,
 				CE14C0E22C53ED37009932E4 /* MulimeeFirestore.swift in Sources */,
 				CEB3F4052C3910DD00C86FB8 /* WaterDropViewModel.swift in Sources */,
-				CE70B66F2C61018E00E065FB /* HealthKitManager.swift in Sources */,
+				CE70B66F2C61018E00E065FB /* HealthKitStore.swift in Sources */,
 				CE43FF8C2C3D6FCD00309DE2 /* MainView.swift in Sources */,
 				CE9BD4402C4AC7D600A40A68 /* MulimeeIntent.swift in Sources */,
 				CE70B6622C5FBF0100E065FB /* HistoryView.swift in Sources */,

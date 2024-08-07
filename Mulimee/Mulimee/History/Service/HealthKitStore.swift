@@ -1,5 +1,5 @@
 //
-//  HealthKitManager.swift
+//  HealthKitStore.swift
 //  Mulimee
 //
 //  Created by Kyeongmo Yang on 8/5/24.
@@ -9,8 +9,15 @@ import Foundation
 import HealthKit
 
 enum HealthKitError: Error {
-    case failedQuantityType
+    case invalidObjectType
+    case permissionDenied
     case failedFetchResult
+}
+
+enum HealthKitAuthorizationStatus: Int {
+    case notDetermined
+    case sharingDenied
+    case sharingAuthorized
 }
 
 final class HealthKitStore {
@@ -20,18 +27,40 @@ final class HealthKitStore {
     
     private let healthStore = HKHealthStore()
     
-    func requestAuthorization() async throws {
+    private var authorizationStatus: HKAuthorizationStatus {
         guard let waterType = HKObjectType.quantityType(forIdentifier: .dietaryWater) else {
-            throw HealthKitError.failedQuantityType
+            return .notDetermined
         }
         
-        try await healthStore.requestAuthorization(toShare: [waterType], read: [waterType])
+        return healthStore.authorizationStatus(for: waterType)
+    }
+    
+    var isAuthorized: HealthKitAuthorizationStatus {
+        switch authorizationStatus {
+        case .notDetermined: .notDetermined
+        case .sharingDenied: .sharingDenied
+        case .sharingAuthorized: .sharingAuthorized
+        @unknown default: .notDetermined
+        }
+    }
+    
+    func requestAuthorization() async throws {
+        guard let waterType = HKObjectType.quantityType(forIdentifier: .dietaryWater) else {
+            throw HealthKitError.invalidObjectType
+        }
+        
+        do {
+            try await healthStore.requestAuthorization(toShare: [waterType], read: [waterType])
+        } catch {
+            print(error)
+            throw HealthKitError.permissionDenied
+        }
     }
     
     func readWaterIntake(from startDate: Date, to endDate: Date) async throws -> [(Date, Double)] {
         return try await withCheckedThrowingContinuation { continuation in
             guard let waterType = HKObjectType.quantityType(forIdentifier: .dietaryWater) else {
-                continuation.resume(throwing: HealthKitError.failedQuantityType)
+                continuation.resume(throwing: HealthKitError.invalidObjectType)
                 return
             }
             let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictStartDate)
