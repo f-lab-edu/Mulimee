@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HistoryItem: View {
     let history: History
-    let itemSize: CGFloat
     
     private var dayString: String {
         let day = Calendar.current.component(.day, from: history.date)
@@ -23,6 +22,9 @@ struct HistoryItem: View {
                     .font(.title2)
                 Spacer()
             }
+            
+            Spacer()
+            
             HStack {
                 Spacer()
                 Text(String(format: "%.0fml", history.mililiter))
@@ -30,7 +32,6 @@ struct HistoryItem: View {
                     .fontWeight(.semibold)
             }
         }
-        .frame(width: itemSize, height: itemSize)
         .background(Color.white)
         .cornerRadius(5)
         .shadow(radius: 2)
@@ -38,5 +39,5 @@ struct HistoryItem: View {
 }
 
 #Preview {
-    HistoryItem(history: .mock, itemSize: 50)
+    HistoryItem(history: .mock)
 }

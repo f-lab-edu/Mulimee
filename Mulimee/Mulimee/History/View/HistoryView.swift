@@ -19,21 +19,28 @@ struct HistoryView: View {
                 HStack {
                     Text(viewModel.dateString)
                         .font(.title)
+                        .fontWeight(.heavy)
                     
                     Spacer()
                 }
                 .padding()
                 
-                GeometryReader { geometry in
-                    let itemSize = geometry.size.width / 5 - 10
-                    
-                    LazyVGrid(columns: Array(repeating: GridItem(), count: 5), spacing: 5) {
-                        ForEach(viewModel.histories, id: \.self) { history in
-                            HistoryItem(history: history, itemSize: itemSize)
+                Grid(horizontalSpacing: 5, verticalSpacing: 5) {
+                    ForEach(0..<(viewModel.histories.count + 4) / 5, id: \.self) { rowIndex in
+                        GridRow {
+                            ForEach(0..<5) { columnIndex in
+                                let index = rowIndex * 5 + columnIndex
+                                if index < viewModel.histories.count {
+                                    HistoryItem(history: viewModel.histories[index])
+                                        .aspectRatio(1, contentMode: .fit)
+                                } else {
+                                    EmptyView()
+                                }
+                            }
                         }
                     }
-                    .padding(5)
                 }
+                .padding(5)
                 
                 Spacer()
             }
