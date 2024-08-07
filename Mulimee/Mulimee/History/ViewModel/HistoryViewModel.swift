@@ -10,8 +10,8 @@ import SwiftUI
 final class HistoryViewModel: ObservableObject {
     private let repository: HealthKitRepository = HealthKitService()
     
-    @State private(set) var year: Int
-    @State private(set) var month: Int {
+    private var year: Int
+    private var month: Int {
         didSet { dateString = "\(year)년 \(month)월" }
     }
     @Published var dateString: String = ""
