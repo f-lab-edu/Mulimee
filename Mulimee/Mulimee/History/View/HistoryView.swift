@@ -78,6 +78,9 @@ struct HistoryView: View {
                 Spacer()
             }
         }
+        .alert(viewModel.errorMessage, isPresented: $viewModel.showErrorAlert) {
+            Button("확인", role: .cancel, action: {})
+        }
     }
 }
 

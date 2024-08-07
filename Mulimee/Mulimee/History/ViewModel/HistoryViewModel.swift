@@ -15,6 +15,8 @@ final class HistoryViewModel: ObservableObject {
     var dateString: String
     @Published private(set) var histories: [History] = []
     @Published var showAuthorizationAlert = false
+    @Published var showErrorAlert = false
+    var errorMessage: String = ""
     
     private let calendar = Calendar.current
     
@@ -48,11 +50,12 @@ final class HistoryViewModel: ObservableObject {
         return (startDate, endDate)
     }
     
+    @MainActor
     func requestAuthorization() async {
         do {
             try await repository.requestAuthorization()
         } catch {
-            print(error.localizedDescription)
+            handleError(error)
         }
     }
     
@@ -67,7 +70,21 @@ final class HistoryViewModel: ObservableObject {
         do {
             histories = try await repository.fetch(from: start, to: end)
         } catch {
-            print(error.localizedDescription)
+            handleError(error)
         }
+    }
+    
+    private func handleError(_ error: Error) {
+        guard let healthKitError = error as? HealthKitError else {
+            errorMessage = "문제가 발생했습니다."
+            return
+        }
+        let message: String = switch healthKitError {
+        case .invalidObjectType: "잘못된 타입입니다."
+        case .permissionDenied: "권한이 없습니다."
+        case .healthKitInternalError: "HealthKit 프레임워크 내부 에러입니다."
+        case .incompleteExecuteQuery: "쿼리가 계산을 끝내지 못했습니다."
+        }
+        errorMessage = message
     }
 }

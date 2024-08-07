@@ -11,7 +11,8 @@ import HealthKit
 enum HealthKitError: Error {
     case invalidObjectType
     case permissionDenied
-    case failedFetchResult
+    case healthKitInternalError
+    case incompleteExecuteQuery
 }
 
 enum HealthKitAuthorizationStatus: Int {
@@ -52,12 +53,11 @@ final class HealthKitStore {
         do {
             try await healthStore.requestAuthorization(toShare: [waterType], read: [waterType])
         } catch {
-            print(error)
             throw HealthKitError.permissionDenied
         }
     }
     
-    func readWaterIntake(from startDate: Date, to endDate: Date) async throws -> [(Date, Double)] {
+    func readWaterIntake(from startDate: Date, to endDate: Date) async throws -> [(date: Date, amount: Double)] {
         return try await withCheckedThrowingContinuation { continuation in
             guard let waterType = HKObjectType.quantityType(forIdentifier: .dietaryWater) else {
                 continuation.resume(throwing: HealthKitError.invalidObjectType)
@@ -66,13 +66,14 @@ final class HealthKitStore {
             let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictStartDate)
             let query = HKStatisticsCollectionQuery(quantityType: waterType, quantitySamplePredicate: predicate, options: .cumulativeSum, anchorDate: startDate, intervalComponents: DateComponents(day: 1))
             query.initialResultsHandler = { query, result, error in
-                if let error = error {
-                    continuation.resume(throwing: error)
+                if error != nil {
+                    continuation.resume(throwing: HealthKitError.healthKitInternalError)
                     return
                 }
                 
+                // If this property is not set to nil, the query executes the results handler on a background queue after it has finished calculating the statistics for all matching samples currently stored in HealthKit.
                 guard let result else {
-                    continuation.resume(throwing: HealthKitError.failedFetchResult)
+                    continuation.resume(throwing: HealthKitError.incompleteExecuteQuery)
                     return
                 }
                 
