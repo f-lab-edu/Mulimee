@@ -12,8 +12,8 @@ protocol HealthKitRepository {
     
     func requestAuthorization() async throws
     func fetch(from startDate: Date, to endDate: Date) async throws -> [History]
-    func setDrink() async throws
-    func reset() async throws
+    func drinkAGlassOfWater() async throws
+    func resetWaterInTakeInToday() async throws
 }
 
 final class HealthKitService: HealthKitRepository {
@@ -31,11 +31,11 @@ final class HealthKitService: HealthKitRepository {
         try await healthKitStore.readWaterIntake(from: startDate, to: endDate).map { History(date: $0.date, mililiter: $0.amount) }
     }
     
-    func setDrink() async throws {
-        try await healthKitStore.saveWaterIntake()
+    func drinkAGlassOfWater() async throws {
+        try await healthKitStore.setAGlassOfWater()
     }
     
-    func reset() async throws {
-        try await healthKitStore.reset()
+    func resetWaterInTakeInToday() async throws {
+        try await healthKitStore.resetWaterInTakeInToday()
     }
 }

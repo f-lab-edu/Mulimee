@@ -91,9 +91,9 @@ final class HealthKitStore {
         }
     }
     
-    func saveWaterIntake() async throws {
+    func setAGlassOfWater() async throws {
         guard let waterType = HKObjectType.quantityType(forIdentifier: .dietaryWater) else {
-            throw HealthKitError.failedQuantityType
+            throw HealthKitError.invalidObjectType
         }
             
         let waterQuantity = HKQuantity(unit: .literUnit(with: .milli), doubleValue: Constant.aGlassOfWater)
@@ -102,12 +102,12 @@ final class HealthKitStore {
         try await healthStore.save(waterSample)
     }
     
-    func reset() async throws {
+    func resetWaterInTakeInToday() async throws {
         guard let waterType = HKObjectType.quantityType(forIdentifier: .dietaryWater) else {
-            throw HealthKitError.failedQuantityType
+            throw HealthKitError.invalidObjectType
         }
             
-        let waterQuantity = HKQuantity(unit: .literUnit(with: .milli), doubleValue: 0)
+        let waterQuantity = HKQuantity(unit: .literUnit(with: .milli), doubleValue: .zero)
         let waterSample = HKQuantitySample(type: waterType, quantity: waterQuantity, start: .now, end: .now)
             
         try await healthStore.save(waterSample)
