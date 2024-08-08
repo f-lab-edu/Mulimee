@@ -64,7 +64,7 @@ final class DrinkViewModel: ObservableObject {
     func drinkWater() async {
         do {
             try await drink.drinkWater()
-            try await healthKitRepository.setDrink()
+            try await healthKitRepository.drinkAGlassOfWater()
         } catch {
             drink.restore()
             showAlert.toggle()
@@ -74,7 +74,7 @@ final class DrinkViewModel: ObservableObject {
     func reset() async {
         do {
             try await drink.reset()
-            try await healthKitRepository.reset()
+            try await healthKitRepository.resetWaterInTakeInToday()
         } catch {
             print(error.localizedDescription)
             showAlert.toggle()
