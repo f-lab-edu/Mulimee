@@ -20,14 +20,14 @@ final class HistoryViewModel: ObservableObject {
     
     private let calendar = Calendar.current
     
-    var isHealthKitAuthorized: HealthKitAuthorizationStatus {
-        let isAuthorized = repository.isAuthorized
-        if isAuthorized == .sharingDenied {
-            Task { @MainActor in
-                showAuthorizationAlert = true
+    @Published var healthKitAuthorizationStatus: HealthKitAuthorizationStatus = .notDetermined {
+        didSet {
+            if healthKitAuthorizationStatus == .sharingDenied {
+                Task { @MainActor in
+                    showAuthorizationAlert = true
+                }
             }
         }
-        return isAuthorized
     }
     
     init() {
@@ -35,6 +35,7 @@ final class HistoryViewModel: ObservableObject {
         year = calendar.component(.year, from: now)
         month = calendar.component(.month, from: now)
         dateString = "\(year)년 \(month)월"
+        healthKitAuthorizationStatus = repository.healthKitAuthorizationStatus
     }
     
     private func getStartAndEndDate() -> (startDate: Date?, endDate: Date?) {
@@ -54,6 +55,7 @@ final class HistoryViewModel: ObservableObject {
     func requestAuthorization() async {
         do {
             try await repository.requestAuthorization()
+            healthKitAuthorizationStatus = repository.healthKitAuthorizationStatus
         } catch {
             handleError(error)
         }
@@ -79,12 +81,15 @@ final class HistoryViewModel: ObservableObject {
             errorMessage = "문제가 발생했습니다."
             return
         }
-        let message: String = switch healthKitError {
-        case .invalidObjectType: "잘못된 타입입니다."
-        case .permissionDenied: "권한이 없습니다."
-        case .healthKitInternalError: "HealthKit 프레임워크 내부 에러입니다."
-        case .incompleteExecuteQuery: "쿼리가 계산을 끝내지 못했습니다."
+        switch healthKitError {
+        case .invalidObjectType: 
+            errorMessage = "잘못된 타입입니다."
+        case .permissionDenied:
+            errorMessage = "권한이 없습니다."
+        case .healthKitInternalError:
+            errorMessage = "HealthKit 프레임워크 내부 에러입니다."
+        case .incompleteExecuteQuery:
+            errorMessage = "쿼리가 계산을 끝내지 못했습니다."
         }
-        errorMessage = message
     }
 }

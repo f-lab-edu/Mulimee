@@ -36,7 +36,7 @@ final class HealthKitStore {
         return healthStore.authorizationStatus(for: waterType)
     }
     
-    var isAuthorized: HealthKitAuthorizationStatus {
+    var healthKitAuthorizationStatus: HealthKitAuthorizationStatus {
         switch authorizationStatus {
         case .notDetermined: .notDetermined
         case .sharingDenied: .sharingDenied

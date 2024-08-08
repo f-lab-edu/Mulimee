@@ -8,7 +8,7 @@
 import Foundation
 
 protocol HealthKitRepository {
-    var isAuthorized: HealthKitAuthorizationStatus { get }
+    var healthKitAuthorizationStatus: HealthKitAuthorizationStatus { get }
     
     func requestAuthorization() async throws
     func fetch(from startDate: Date, to endDate: Date) async throws -> [History]
@@ -17,8 +17,8 @@ protocol HealthKitRepository {
 final class HealthKitService: HealthKitRepository {
     private let healthKitStore = HealthKitStore()
     
-    var isAuthorized: HealthKitAuthorizationStatus {
-        healthKitStore.isAuthorized
+    var healthKitAuthorizationStatus: HealthKitAuthorizationStatus {
+        healthKitStore.healthKitAuthorizationStatus
     }
     
     func requestAuthorization() async throws {

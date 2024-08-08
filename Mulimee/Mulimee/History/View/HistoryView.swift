@@ -25,7 +25,7 @@ struct HistoryView: View {
                 }
                 .padding()
                 
-                switch viewModel.isHealthKitAuthorized {
+                switch viewModel.healthKitAuthorizationStatus {
                 case .notDetermined:
                     Text("건강 데이터 권한을 허용해주세요.")
                         .task {
