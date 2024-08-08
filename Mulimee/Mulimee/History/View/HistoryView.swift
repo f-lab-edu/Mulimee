@@ -54,7 +54,7 @@ struct HistoryView: View {
                         Text("이 앱의 기능을 사용하려면 HealthKit 권한이 필요합니다. 설정에서 권한을 변경해주세요.")
                     }
                 case .sharingAuthorized:
-                    Grid(horizontalSpacing: 5, verticalSpacing: 5) {
+                    Grid(horizontalSpacing: 10, verticalSpacing: 10) {
                         ForEach(0..<(viewModel.histories.count + 4) / 5, id: \.self) { rowIndex in
                             GridRow {
                                 ForEach(0..<5) { columnIndex in
@@ -69,7 +69,7 @@ struct HistoryView: View {
                             }
                         }
                     }
-                    .padding(5)
+                    .padding(10)
                     .task {
                         await viewModel.fetchHistores()
                     }
