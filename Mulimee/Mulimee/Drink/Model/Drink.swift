@@ -10,7 +10,7 @@ import Foundation
 
 final class Drink {
     private let drinkRepository: DrinkRepository
-    private let healthKitRepository: HealthKitRepository = HealthKitRepositoryImpl()
+    private let healthKitRepository: HealthKitRepository
     
     private let numberOfGlassesSubject: CurrentValueSubject<Int, Never>
     var numberOfGlasses: AnyPublisher<Int, Never> {
@@ -27,7 +27,8 @@ final class Drink {
         numberOfGlassesSubject.value
     }
     
-    init(repository: DrinkRepository) {
+    init(drinkRepository: DrinkRepository,
+         healthKitRepository: HealthKitRepository) {
         self.drinkRepository = repository
         self.numberOfGlassesSubject = .init(0)
         

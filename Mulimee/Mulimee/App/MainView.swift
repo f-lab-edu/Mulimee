@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct MainView: View {
-    @State private var drink: Drink = Drink(repository: DrinkRepositoryService())
+    @State private var drink: Drink = Drink(drinkRepository: DrinkRepositoryService(),
+                                            healthKitRepository: HealthKitRepositoryImpl())
     @State private var isLaunching = true
     private let moveToTimer = Timer.publish(every: 2,on: .main, in: .common).autoconnect().first()
     
