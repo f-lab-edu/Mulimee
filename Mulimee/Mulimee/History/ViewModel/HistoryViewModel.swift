@@ -8,7 +8,7 @@
 import SwiftUI
 
 final class HistoryViewModel: ObservableObject {
-    private let repository: HealthKitRepository = HealthKitService()
+    private let repository: HealthKitRepository = HealthKitRepositoryImpl()
     
     private var year: Int
     private var month: Int
