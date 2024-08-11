@@ -26,14 +26,14 @@ final class HealthKitStore {
         static let aGlassOfWater: Double = 250
     }
     
-    private let healthStore = HKHealthStore()
+    private static let healthStore = HKHealthStore()
     
     private var authorizationStatus: HKAuthorizationStatus {
         guard let waterType = HKObjectType.quantityType(forIdentifier: .dietaryWater) else {
             return .notDetermined
         }
         
-        return healthStore.authorizationStatus(for: waterType)
+        return Self.healthStore.authorizationStatus(for: waterType)
     }
     
     var healthKitAuthorizationStatus: HealthKitAuthorizationStatus {
@@ -51,7 +51,7 @@ final class HealthKitStore {
         }
         
         do {
-            try await healthStore.requestAuthorization(toShare: [waterType], read: [waterType])
+            try await Self.healthStore.requestAuthorization(toShare: [waterType], read: [waterType])
         } catch {
             throw HealthKitError.permissionDenied
         }
@@ -87,7 +87,29 @@ final class HealthKitStore {
                 continuation.resume(returning: waterIntakeResults)
             }
             
-            healthStore.execute(query)
+            Self.healthStore.execute(query)
         }
+    }
+    
+    func setAGlassOfWater() async throws {
+        guard let waterType = HKObjectType.quantityType(forIdentifier: .dietaryWater) else {
+            throw HealthKitError.invalidObjectType
+        }
+            
+        let waterQuantity = HKQuantity(unit: .literUnit(with: .milli), doubleValue: Constant.aGlassOfWater)
+        let waterSample = HKQuantitySample(type: waterType, quantity: waterQuantity, start: .now, end: .now)
+            
+        try await Self.healthStore.save(waterSample)
+    }
+    
+    func resetWaterInTakeInToday() async throws {
+        guard let waterType = HKObjectType.quantityType(forIdentifier: .dietaryWater) else {
+            throw HealthKitError.invalidObjectType
+        }
+            
+        let waterQuantity = HKQuantity(unit: .literUnit(with: .milli), doubleValue: .zero)
+        let waterSample = HKQuantitySample(type: waterType, quantity: waterQuantity, start: .now, end: .now)
+            
+        try await Self.healthStore.save(waterSample)
     }
 }
