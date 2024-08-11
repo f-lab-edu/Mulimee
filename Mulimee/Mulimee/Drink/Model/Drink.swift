@@ -29,13 +29,14 @@ final class Drink {
     
     init(drinkRepository: DrinkRepository,
          healthKitRepository: HealthKitRepository) {
-        self.drinkRepository = repository
+        self.drinkRepository = drinkRepository
+        self.healthKitRepository = healthKitRepository
         self.numberOfGlassesSubject = .init(0)
         
         Task {
-            guard await repository.isExistDocument else {
+            guard await drinkRepository.isExistDocument else {
                 do {
-                    try await repository.createDocument()
+                    try await drinkRepository.createDocument()
                     await bind()
                 } catch {
                     errorSubject.send(completion: .failure(error))

@@ -15,12 +15,6 @@ enum HealthKitError: Error {
     case incompleteExecuteQuery
 }
 
-enum HealthKitAuthorizationStatus: Int {
-    case notDetermined
-    case sharingDenied
-    case sharingAuthorized
-}
-
 final class HealthKitStore {
     private enum Constant {
         static let aGlassOfWater: Double = 250

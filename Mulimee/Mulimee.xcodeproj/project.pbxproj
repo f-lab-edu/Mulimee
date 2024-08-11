@@ -21,6 +21,14 @@
 		CE43FF8C2C3D6FCD00309DE2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43FF8B2C3D6FCD00309DE2 /* MainView.swift */; };
 		CE43FF8F2C3D725700309DE2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CE43FF8E2C3D725700309DE2 /* Lottie */; };
 		CE4A18EF2C301CAA007D2279 /* GlareCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */; };
+		CE6AC1932C68E51300FF2174 /* HealthKitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6682C60E78500E065FB /* HealthKitRepository.swift */; };
+		CE6AC1952C68E52900FF2174 /* HealthKitAuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AC1942C68E52900FF2174 /* HealthKitAuthorizationStatus.swift */; };
+		CE6AC1962C68E53100FF2174 /* HealthKitAuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AC1942C68E52900FF2174 /* HealthKitAuthorizationStatus.swift */; };
+		CE6AC1972C68E53200FF2174 /* HealthKitAuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AC1942C68E52900FF2174 /* HealthKitAuthorizationStatus.swift */; };
+		CE6AC1982C68E53700FF2174 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
+		CE6AC19A2C68E55E00FF2174 /* DrinkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F4092C39112100C86FB8 /* DrinkRepository.swift */; };
+		CE6AC19B2C68E56400FF2174 /* HealthKitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6682C60E78500E065FB /* HealthKitRepository.swift */; };
+		CE6AC19C2C68E56600FF2174 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
 		CE70B6622C5FBF0100E065FB /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6612C5FBF0100E065FB /* HistoryView.swift */; };
 		CE70B6642C5FC69500E065FB /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6632C5FC69500E065FB /* HistoryViewModel.swift */; };
 		CE70B6662C60E1BA00E065FB /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
@@ -111,6 +119,7 @@
 		CE4218BB2C2B1AC4005DA37D /* DrinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkViewModel.swift; sourceTree = "<group>"; };
 		CE43FF8B2C3D6FCD00309DE2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlareCircleView.swift; sourceTree = "<group>"; };
+		CE6AC1942C68E52900FF2174 /* HealthKitAuthorizationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitAuthorizationStatus.swift; sourceTree = "<group>"; };
 		CE70B6612C5FBF0100E065FB /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		CE70B6632C5FC69500E065FB /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		CE70B6652C60E1BA00E065FB /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
@@ -238,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				CE70B6652C60E1BA00E065FB /* History.swift */,
+				CE6AC1942C68E52900FF2174 /* HealthKitAuthorizationStatus.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -604,13 +614,16 @@
 			files = (
 				CE14C0EB2C540D56009932E4 /* DrinkRepository.swift in Sources */,
 				CE14C0FE2C57B9B6009932E4 /* Water.swift in Sources */,
+				CE6AC1982C68E53700FF2174 /* History.swift in Sources */,
 				CE9BD4352C4AB88C00A40A68 /* WaterWaveView.swift in Sources */,
 				CE9BD4282C4AB2B100A40A68 /* MulimeeWidget.swift in Sources */,
 				CE14C0EC2C540D5A009932E4 /* MulimeeFirestore.swift in Sources */,
 				CE9BD4412C4AC88900A40A68 /* MulimeeIntent.swift in Sources */,
+				CE6AC1932C68E51300FF2174 /* HealthKitRepository.swift in Sources */,
 				CE9BD4382C4ABD0C00A40A68 /* UserDefaults+AppGroup.swift in Sources */,
 				CE9BD4262C4AB2B100A40A68 /* MulimeeWidgetBundle.swift in Sources */,
 				CE9BD4392C4ABD2900A40A68 /* String+UserDefaultKey.swift in Sources */,
+				CE6AC1972C68E53200FF2174 /* HealthKitAuthorizationStatus.swift in Sources */,
 				CE14C0FA2C540DEE009932E4 /* Drink.swift in Sources */,
 				CE9BD42A2C4AB2B100A40A68 /* AppIntent.swift in Sources */,
 			);
@@ -636,6 +649,7 @@
 				CE14C0FD2C57B99D009932E4 /* Water.swift in Sources */,
 				CE70B6642C5FC69500E065FB /* HistoryViewModel.swift in Sources */,
 				CE70B6692C60E78500E065FB /* HealthKitRepository.swift in Sources */,
+				CE6AC1952C68E52900FF2174 /* HealthKitAuthorizationStatus.swift in Sources */,
 				CE70B6662C60E1BA00E065FB /* History.swift in Sources */,
 				CE14C0E22C53ED37009932E4 /* MulimeeFirestore.swift in Sources */,
 				CEB3F4052C3910DD00C86FB8 /* WaterDropViewModel.swift in Sources */,
@@ -654,6 +668,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE6AC19B2C68E56400FF2174 /* HealthKitRepository.swift in Sources */,
+				CE6AC19A2C68E55E00FF2174 /* DrinkRepository.swift in Sources */,
+				CE6AC19C2C68E56600FF2174 /* History.swift in Sources */,
 				CE9D499A2C232A3E005021CF /* MulimeeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -662,6 +679,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE6AC1962C68E53100FF2174 /* HealthKitAuthorizationStatus.swift in Sources */,
 				CE9D49A42C232A3E005021CF /* MulimeeUITests.swift in Sources */,
 				CE9D49A62C232A3E005021CF /* MulimeeUITestsLaunchTests.swift in Sources */,
 			);

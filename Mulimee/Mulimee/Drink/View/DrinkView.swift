@@ -69,5 +69,6 @@ struct DrinkView: View {
 
 #Preview {
     DrinkView()
-        .environmentObject(DrinkViewModel(drink: .init(repository: DrinkRepositoryService())))
+        .environmentObject(DrinkViewModel(drink: Drink(drinkRepository: DrinkRepositoryService(),
+                                                       healthKitRepository: HealthKitRepositoryImpl())))
 }
