@@ -48,26 +48,39 @@ final class DrinkTests: XCTestCase {
     
     func testDrinkWaterMaxLimit() async throws {
         // Given
+        let expectation = XCTestExpectation(description: "Drink water max limit")
+        expectation.expectedFulfillmentCount = 8
+        
+        drink.numberOfGlasses.sink { glasses in
+            expectation.fulfill()
+        }.store(in: &cancellables)
+        
+        // When
         for _ in 0..<8 {
             try await drink.drinkWater()
         }
         
-        // When
-        try await drink.drinkWater()
-        
         // Then
+        await fulfillment(of: [expectation], timeout: 1.0)
         XCTAssertEqual(drink.glasses, 8)
     }
     
     func testReset() async throws {
         // Given
-        try await drink.drinkWater()
-        try await drink.drinkWater()
+        let expectation = XCTestExpectation(description: "Drink water max limit")
+        expectation.expectedFulfillmentCount = 3
+        
+        drink.numberOfGlasses.sink { glasses in
+            expectation.fulfill()
+        }.store(in: &cancellables)
         
         // When
+        try await drink.drinkWater()
+        try await drink.drinkWater()
         try await drink.reset()
         
         // Then
+        await fulfillment(of: [expectation], timeout: 1.0)
         XCTAssertEqual(drink.glasses, 0)
     }
     
@@ -126,6 +139,10 @@ private final class MockDrinkRepositoryImpl: DrinkRepository {
 
 private final class MockHealthKitRepositoryImpl: HealthKitRepository {
     func requestAuthorization() async throws {}
+    
+    var healthKitAuthorizationStatus: HealthKitAuthorizationStatus {
+        .sharingAuthorized
+    }
     
     func fetch(from startDate: Date, to endDate: Date) async throws -> [History] {
         createAugust2024Dates().map { History(date: $0, mililiter: 250) }

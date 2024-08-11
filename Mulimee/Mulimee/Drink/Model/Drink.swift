@@ -53,7 +53,7 @@ final class Drink {
             return
         }
         
-        try await repository.setDrink()
+        try await drinkRepository.setDrink()
     }
     
     func reset() async throws {

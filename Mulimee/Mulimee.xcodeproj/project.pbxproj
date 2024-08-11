@@ -34,6 +34,7 @@
 		CE6AC19A2C68E55E00FF2174 /* DrinkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F4092C39112100C86FB8 /* DrinkRepository.swift */; };
 		CE6AC19B2C68E56400FF2174 /* HealthKitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6682C60E78500E065FB /* HealthKitRepository.swift */; };
 		CE6AC19C2C68E56600FF2174 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
+		CE6AC19D2C68EB7800FF2174 /* HealthKitAuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AC1942C68E52900FF2174 /* HealthKitAuthorizationStatus.swift */; };
 		CE70B6622C5FBF0100E065FB /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6612C5FBF0100E065FB /* HistoryView.swift */; };
 		CE70B6642C5FC69500E065FB /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6632C5FC69500E065FB /* HistoryViewModel.swift */; };
 		CE70B6662C60E1BA00E065FB /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
@@ -616,6 +617,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE6AC19D2C68EB7800FF2174 /* HealthKitAuthorizationStatus.swift in Sources */,
 				CE67DA922C68AE2700E02339 /* DrinkRepository.swift in Sources */,
 				CE67DA8E2C68AD4E00E02339 /* DrinkTests.swift in Sources */,
 				CE67DA962C68B85400E02339 /* Drink.swift in Sources */,
