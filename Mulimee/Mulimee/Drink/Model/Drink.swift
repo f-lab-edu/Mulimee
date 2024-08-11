@@ -52,9 +52,8 @@ final class Drink {
         guard numberOfGlassesSubject.value < 8 else {
             return
         }
-        numberOfGlassesSubject.send(glasses + 1)
-        try await drinkRepository.setDrink()
-        try await healthKitRepository.drinkAGlassOfWater()
+        
+        try await repository.setDrink()
     }
     
     func reset() async throws {

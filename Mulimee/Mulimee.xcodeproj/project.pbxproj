@@ -29,7 +29,12 @@
 		CE6AC19A2C68E55E00FF2174 /* DrinkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F4092C39112100C86FB8 /* DrinkRepository.swift */; };
 		CE6AC19B2C68E56400FF2174 /* HealthKitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6682C60E78500E065FB /* HealthKitRepository.swift */; };
 		CE6AC19C2C68E56600FF2174 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
+		CE67DA8E2C68AD4E00E02339 /* DrinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67DA8D2C68AD4E00E02339 /* DrinkTests.swift */; };
 		CE67DA902C68AD8000E02339 /* DrinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67DA8F2C68AD8000E02339 /* DrinkService.swift */; };
+		CE67DA922C68AE2700E02339 /* DrinkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F4092C39112100C86FB8 /* DrinkRepository.swift */; };
+		CE67DA932C68AE2F00E02339 /* DrinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67DA8F2C68AD8000E02339 /* DrinkService.swift */; };
+		CE67DA962C68B85400E02339 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4218B92C2B14F0005DA37D /* Drink.swift */; };
+		CE67DA972C68B89200E02339 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14C0FC2C57B99D009932E4 /* Water.swift */; };
 		CE70B6622C5FBF0100E065FB /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6612C5FBF0100E065FB /* HistoryView.swift */; };
 		CE70B6642C5FC69500E065FB /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6632C5FC69500E065FB /* HistoryViewModel.swift */; };
 		CE70B6662C60E1BA00E065FB /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
@@ -57,9 +62,6 @@
 		CE9D498A2C232A3C005021CF /* DrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D49892C232A3C005021CF /* DrinkView.swift */; };
 		CE9D498C2C232A3E005021CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9D498B2C232A3E005021CF /* Assets.xcassets */; };
 		CE9D49902C232A3E005021CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9D498F2C232A3E005021CF /* Preview Assets.xcassets */; };
-		CE9D499A2C232A3E005021CF /* MulimeeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D49992C232A3E005021CF /* MulimeeTests.swift */; };
-		CE9D49A42C232A3E005021CF /* MulimeeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D49A32C232A3E005021CF /* MulimeeUITests.swift */; };
-		CE9D49A62C232A3E005021CF /* MulimeeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D49A52C232A3E005021CF /* MulimeeUITestsLaunchTests.swift */; };
 		CEB3F4052C3910DD00C86FB8 /* WaterDropViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F4042C3910DD00C86FB8 /* WaterDropViewModel.swift */; };
 		CEB3F40A2C39112100C86FB8 /* DrinkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F4092C39112100C86FB8 /* DrinkRepository.swift */; };
 		CEB3F40C2C39120A00C86FB8 /* UserDefaults+AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F40B2C39120A00C86FB8 /* UserDefaults+AppGroup.swift */; };
@@ -90,13 +92,6 @@
 			remoteGlobalIDString = CE9D49832C232A3C005021CF;
 			remoteInfo = Mulimee;
 		};
-		CE9D49A02C232A3E005021CF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CE9D497C2C232A3C005021CF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CE9D49832C232A3C005021CF;
-			remoteInfo = Mulimee;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -120,6 +115,7 @@
 		CE4218BB2C2B1AC4005DA37D /* DrinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkViewModel.swift; sourceTree = "<group>"; };
 		CE43FF8B2C3D6FCD00309DE2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlareCircleView.swift; sourceTree = "<group>"; };
+		CE67DA8D2C68AD4E00E02339 /* DrinkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkTests.swift; sourceTree = "<group>"; };
 		CE67DA8F2C68AD8000E02339 /* DrinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkService.swift; sourceTree = "<group>"; };
 		CE6AC1942C68E52900FF2174 /* HealthKitAuthorizationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitAuthorizationStatus.swift; sourceTree = "<group>"; };
 		CE70B6612C5FBF0100E065FB /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
@@ -129,6 +125,7 @@
 		CE70B66C2C60EB7B00E065FB /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
 		CE70B66E2C61018E00E065FB /* HealthKitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitStore.swift; sourceTree = "<group>"; };
 		CE70B6702C62409900E065FB /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
+		CE72A9CB2C68C36C006202C1 /* Mulimee.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Mulimee.xctestplan; sourceTree = "<group>"; };
 		CE72A9CC2C68CB04006202C1 /* HealthKitRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitRepositoryImpl.swift; sourceTree = "<group>"; };
 		CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWaveView.swift; sourceTree = "<group>"; };
 		CE88BF342C2DAB8F00C6081F /* WaterDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterDropView.swift; sourceTree = "<group>"; };
@@ -149,10 +146,6 @@
 		CE9D498D2C232A3E005021CF /* Mulimee.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mulimee.entitlements; sourceTree = "<group>"; };
 		CE9D498F2C232A3E005021CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CE9D49952C232A3E005021CF /* MulimeeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MulimeeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE9D49992C232A3E005021CF /* MulimeeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulimeeTests.swift; sourceTree = "<group>"; };
-		CE9D499F2C232A3E005021CF /* MulimeeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MulimeeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE9D49A32C232A3E005021CF /* MulimeeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulimeeUITests.swift; sourceTree = "<group>"; };
-		CE9D49A52C232A3E005021CF /* MulimeeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulimeeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CEB3F4042C3910DD00C86FB8 /* WaterDropViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterDropViewModel.swift; sourceTree = "<group>"; };
 		CEB3F4092C39112100C86FB8 /* DrinkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkRepository.swift; sourceTree = "<group>"; };
 		CEB3F40B2C39120A00C86FB8 /* UserDefaults+AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+AppGroup.swift"; sourceTree = "<group>"; };
@@ -190,13 +183,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CE9D49922C232A3E005021CF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE9D499C2C232A3E005021CF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -300,10 +286,10 @@
 		CE9D497B2C232A3C005021CF = {
 			isa = PBXGroup;
 			children = (
+				CE72A9CB2C68C36C006202C1 /* Mulimee.xctestplan */,
 				CE9D49862C232A3C005021CF /* Mulimee */,
 				CE9BD4242C4AB2B100A40A68 /* MulimeeWidget */,
 				CE9D49982C232A3E005021CF /* MulimeeTests */,
-				CE9D49A22C232A3E005021CF /* MulimeeUITests */,
 				CE9BD41F2C4AB2B100A40A68 /* Frameworks */,
 				CE9D49852C232A3C005021CF /* Products */,
 			);
@@ -314,7 +300,6 @@
 			children = (
 				CE9D49842C232A3C005021CF /* Mulimee.app */,
 				CE9D49952C232A3E005021CF /* MulimeeTests.xctest */,
-				CE9D499F2C232A3E005021CF /* MulimeeUITests.xctest */,
 				CE9BD41E2C4AB2B100A40A68 /* MulimeeWidgetExtension.appex */,
 			);
 			name = Products;
@@ -347,18 +332,9 @@
 		CE9D49982C232A3E005021CF /* MulimeeTests */ = {
 			isa = PBXGroup;
 			children = (
-				CE9D49992C232A3E005021CF /* MulimeeTests.swift */,
+				CE67DA8D2C68AD4E00E02339 /* DrinkTests.swift */,
 			);
 			path = MulimeeTests;
-			sourceTree = "<group>";
-		};
-		CE9D49A22C232A3E005021CF /* MulimeeUITests */ = {
-			isa = PBXGroup;
-			children = (
-				CE9D49A32C232A3E005021CF /* MulimeeUITests.swift */,
-				CE9D49A52C232A3E005021CF /* MulimeeUITestsLaunchTests.swift */,
-			);
-			path = MulimeeUITests;
 			sourceTree = "<group>";
 		};
 		CEB3F4032C3910CF00C86FB8 /* Drink */ = {
@@ -505,24 +481,6 @@
 			productReference = CE9D49952C232A3E005021CF /* MulimeeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CE9D499E2C232A3E005021CF /* MulimeeUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CE9D49AF2C232A3E005021CF /* Build configuration list for PBXNativeTarget "MulimeeUITests" */;
-			buildPhases = (
-				CE9D499B2C232A3E005021CF /* Sources */,
-				CE9D499C2C232A3E005021CF /* Frameworks */,
-				CE9D499D2C232A3E005021CF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CE9D49A12C232A3E005021CF /* PBXTargetDependency */,
-			);
-			name = MulimeeUITests;
-			productName = MulimeeUITests;
-			productReference = CE9D499F2C232A3E005021CF /* MulimeeUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -540,10 +498,6 @@
 						CreatedOnToolsVersion = 15.4;
 					};
 					CE9D49942C232A3E005021CF = {
-						CreatedOnToolsVersion = 15.4;
-						TestTargetID = CE9D49832C232A3C005021CF;
-					};
-					CE9D499E2C232A3E005021CF = {
 						CreatedOnToolsVersion = 15.4;
 						TestTargetID = CE9D49832C232A3C005021CF;
 					};
@@ -567,7 +521,6 @@
 			targets = (
 				CE9D49832C232A3C005021CF /* Mulimee */,
 				CE9D49942C232A3E005021CF /* MulimeeTests */,
-				CE9D499E2C232A3E005021CF /* MulimeeUITests */,
 				CE9BD41D2C4AB2B100A40A68 /* MulimeeWidgetExtension */,
 			);
 		};
@@ -595,13 +548,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CE9D49932C232A3E005021CF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE9D499D2C232A3E005021CF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -673,6 +619,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE67DA922C68AE2700E02339 /* DrinkRepository.swift in Sources */,
+				CE67DA8E2C68AD4E00E02339 /* DrinkTests.swift in Sources */,
+				CE67DA962C68B85400E02339 /* Drink.swift in Sources */,
+				CE67DA972C68B89200E02339 /* Water.swift in Sources */,
 				CE6AC19B2C68E56400FF2174 /* HealthKitRepository.swift in Sources */,
 				CE6AC19A2C68E55E00FF2174 /* DrinkRepository.swift in Sources */,
 				CE6AC19C2C68E56600FF2174 /* History.swift in Sources */,
@@ -702,11 +652,6 @@
 			isa = PBXTargetDependency;
 			target = CE9D49832C232A3C005021CF /* Mulimee */;
 			targetProxy = CE9D49962C232A3E005021CF /* PBXContainerItemProxy */;
-		};
-		CE9D49A12C232A3E005021CF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CE9D49832C232A3C005021CF /* Mulimee */;
-			targetProxy = CE9D49A02C232A3E005021CF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1014,50 +959,6 @@
 			};
 			name = Release;
 		};
-		CE9D49B02C232A3E005021CF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8UV3Y69NB7;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gaeng2y.MulimeeUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Mulimee;
-			};
-			name = Debug;
-		};
-		CE9D49B12C232A3E005021CF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8UV3Y69NB7;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gaeng2y.MulimeeUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Mulimee;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1093,15 +994,6 @@
 			buildConfigurations = (
 				CE9D49AD2C232A3E005021CF /* Debug */,
 				CE9D49AE2C232A3E005021CF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CE9D49AF2C232A3E005021CF /* Build configuration list for PBXNativeTarget "MulimeeUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CE9D49B02C232A3E005021CF /* Debug */,
-				CE9D49B12C232A3E005021CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
