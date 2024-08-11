@@ -10,19 +10,22 @@ import XCTest
 
 final class DrinkTests: XCTestCase {
     var drink: Drink!
-    var mockService: DrinkRepository!
+    var mockDrinkRepository: DrinkRepository!
+    var mockHeatlKitRepository: HealthKitRepository!
     var cancellables: Set<AnyCancellable>!
     
     override func setUp() {
         super.setUp()
-        mockService = MockDrinkService()
-        drink = Drink(repository: mockService)
+        mockDrinkRepository = MockDrinkRepositoryImpl()
+        mockHeatlKitRepository = MockHealthKitRepositoryImpl()
+        drink = Drink(drinkRepository: mockDrinkRepository, healthKitRepository: mockHeatlKitRepository)
         cancellables = Set<AnyCancellable>()
     }
     
     override func tearDown() {
         drink = nil
-        mockService = nil
+        mockDrinkRepository = nil
+        mockHeatlKitRepository = nil
         cancellables = nil
         super.tearDown()
     }
@@ -93,7 +96,7 @@ final class DrinkTests: XCTestCase {
     }
 }
 
-final class MockDrinkService: DrinkRepository {
+private final class MockDrinkRepositoryImpl: DrinkRepository {
     private let waterSubject: CurrentValueSubject<Water, any Error> = CurrentValueSubject(Water(glasses: 0))
     
     var glassPublisher: AnyPublisher<Water, any Error> {
@@ -119,4 +122,27 @@ final class MockDrinkService: DrinkRepository {
     func reset() async throws {
         waterSubject.send(Water(glasses: .zero))
     }
+}
+
+private final class MockHealthKitRepositoryImpl: HealthKitRepository {
+    func requestAuthorization() async throws {}
+    
+    func fetch(from startDate: Date, to endDate: Date) async throws -> [History] {
+        createAugust2024Dates().map { History(date: $0, mililiter: 250) }
+    }
+    
+    private func createAugust2024Dates() -> [Date] {
+        let calendar = Calendar.current
+        
+        // 2024년 8월 1일의 시작 날짜를 만듭니다.
+        let startDate = calendar.date(from: DateComponents(year: 2024, month: 8, day: 1))!
+        let endDate = calendar.date(from: DateComponents(year: 2024, month: 8, day: 31))!
+        let numberOfDays = calendar.dateComponents([.day], from: startDate, to: endDate).day!
+        
+        return (0...numberOfDays).compactMap { calendar.date(byAdding: .day, value: $0, to: startDate) }
+    }
+    
+    func drinkAGlassOfWater() async throws {}
+    
+    func resetWaterInTakeInToday() async throws {}
 }

@@ -21,20 +21,19 @@
 		CE43FF8C2C3D6FCD00309DE2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43FF8B2C3D6FCD00309DE2 /* MainView.swift */; };
 		CE43FF8F2C3D725700309DE2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CE43FF8E2C3D725700309DE2 /* Lottie */; };
 		CE4A18EF2C301CAA007D2279 /* GlareCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */; };
-		CE6AC1932C68E51300FF2174 /* HealthKitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6682C60E78500E065FB /* HealthKitRepository.swift */; };
-		CE6AC1952C68E52900FF2174 /* HealthKitAuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AC1942C68E52900FF2174 /* HealthKitAuthorizationStatus.swift */; };
-		CE6AC1962C68E53100FF2174 /* HealthKitAuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AC1942C68E52900FF2174 /* HealthKitAuthorizationStatus.swift */; };
-		CE6AC1972C68E53200FF2174 /* HealthKitAuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AC1942C68E52900FF2174 /* HealthKitAuthorizationStatus.swift */; };
-		CE6AC1982C68E53700FF2174 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
-		CE6AC19A2C68E55E00FF2174 /* DrinkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F4092C39112100C86FB8 /* DrinkRepository.swift */; };
-		CE6AC19B2C68E56400FF2174 /* HealthKitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6682C60E78500E065FB /* HealthKitRepository.swift */; };
-		CE6AC19C2C68E56600FF2174 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
 		CE67DA8E2C68AD4E00E02339 /* DrinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67DA8D2C68AD4E00E02339 /* DrinkTests.swift */; };
 		CE67DA902C68AD8000E02339 /* DrinkRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67DA8F2C68AD8000E02339 /* DrinkRepositoryImpl.swift */; };
 		CE67DA922C68AE2700E02339 /* DrinkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F4092C39112100C86FB8 /* DrinkRepository.swift */; };
 		CE67DA932C68AE2F00E02339 /* DrinkRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67DA8F2C68AD8000E02339 /* DrinkRepositoryImpl.swift */; };
 		CE67DA962C68B85400E02339 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4218B92C2B14F0005DA37D /* Drink.swift */; };
 		CE67DA972C68B89200E02339 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14C0FC2C57B99D009932E4 /* Water.swift */; };
+		CE6AC1932C68E51300FF2174 /* HealthKitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6682C60E78500E065FB /* HealthKitRepository.swift */; };
+		CE6AC1952C68E52900FF2174 /* HealthKitAuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AC1942C68E52900FF2174 /* HealthKitAuthorizationStatus.swift */; };
+		CE6AC1972C68E53200FF2174 /* HealthKitAuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AC1942C68E52900FF2174 /* HealthKitAuthorizationStatus.swift */; };
+		CE6AC1982C68E53700FF2174 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
+		CE6AC19A2C68E55E00FF2174 /* DrinkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F4092C39112100C86FB8 /* DrinkRepository.swift */; };
+		CE6AC19B2C68E56400FF2174 /* HealthKitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6682C60E78500E065FB /* HealthKitRepository.swift */; };
+		CE6AC19C2C68E56600FF2174 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
 		CE70B6622C5FBF0100E065FB /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6612C5FBF0100E065FB /* HistoryView.swift */; };
 		CE70B6642C5FC69500E065FB /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6632C5FC69500E065FB /* HistoryViewModel.swift */; };
 		CE70B6662C60E1BA00E065FB /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
@@ -125,7 +124,6 @@
 		CE70B66C2C60EB7B00E065FB /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
 		CE70B66E2C61018E00E065FB /* HealthKitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitStore.swift; sourceTree = "<group>"; };
 		CE70B6702C62409900E065FB /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
-		CE72A9CB2C68C36C006202C1 /* Mulimee.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Mulimee.xctestplan; sourceTree = "<group>"; };
 		CE72A9CC2C68CB04006202C1 /* HealthKitRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitRepositoryImpl.swift; sourceTree = "<group>"; };
 		CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWaveView.swift; sourceTree = "<group>"; };
 		CE88BF342C2DAB8F00C6081F /* WaterDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterDropView.swift; sourceTree = "<group>"; };
@@ -286,7 +284,6 @@
 		CE9D497B2C232A3C005021CF = {
 			isa = PBXGroup;
 			children = (
-				CE72A9CB2C68C36C006202C1 /* Mulimee.xctestplan */,
 				CE9D49862C232A3C005021CF /* Mulimee */,
 				CE9BD4242C4AB2B100A40A68 /* MulimeeWidget */,
 				CE9D49982C232A3E005021CF /* MulimeeTests */,
@@ -626,17 +623,6 @@
 				CE6AC19B2C68E56400FF2174 /* HealthKitRepository.swift in Sources */,
 				CE6AC19A2C68E55E00FF2174 /* DrinkRepository.swift in Sources */,
 				CE6AC19C2C68E56600FF2174 /* History.swift in Sources */,
-				CE9D499A2C232A3E005021CF /* MulimeeTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE9D499B2C232A3E005021CF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CE6AC1962C68E53100FF2174 /* HealthKitAuthorizationStatus.swift in Sources */,
-				CE9D49A42C232A3E005021CF /* MulimeeUITests.swift in Sources */,
-				CE9D49A62C232A3E005021CF /* MulimeeUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
