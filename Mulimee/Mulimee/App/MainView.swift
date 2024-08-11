@@ -31,7 +31,7 @@ struct MainView: View {
                         Text("수분")
                     }
                 
-                HistoryView()
+                HistoryView(viewModel: .init())
                     .tabItem {
                         Image(systemName: "calendar")
                         Text("기록")

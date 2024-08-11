@@ -22,6 +22,12 @@
 		CE43FF8F2C3D725700309DE2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CE43FF8E2C3D725700309DE2 /* Lottie */; };
 		CE4A18EF2C301CAA007D2279 /* GlareCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */; };
 		CE70B6622C5FBF0100E065FB /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6612C5FBF0100E065FB /* HistoryView.swift */; };
+		CE70B6642C5FC69500E065FB /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6632C5FC69500E065FB /* HistoryViewModel.swift */; };
+		CE70B6662C60E1BA00E065FB /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
+		CE70B6692C60E78500E065FB /* HealthKitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6682C60E78500E065FB /* HealthKitRepository.swift */; };
+		CE70B66D2C60EB7B00E065FB /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B66C2C60EB7B00E065FB /* HistoryItem.swift */; };
+		CE70B66F2C61018E00E065FB /* HealthKitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B66E2C61018E00E065FB /* HealthKitStore.swift */; };
+		CE70B6712C62409900E065FB /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6702C62409900E065FB /* ImageButton.swift */; };
 		CE7E4F832C59433D00E4DF54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEDDD5CC2C513F55008D8CE4 /* GoogleService-Info.plist */; };
 		CE88BF332C2D9C2C00C6081F /* WaterWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */; };
 		CE88BF352C2DAB8F00C6081F /* WaterDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88BF342C2DAB8F00C6081F /* WaterDropView.swift */; };
@@ -105,6 +111,12 @@
 		CE43FF8B2C3D6FCD00309DE2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlareCircleView.swift; sourceTree = "<group>"; };
 		CE70B6612C5FBF0100E065FB /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		CE70B6632C5FC69500E065FB /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		CE70B6652C60E1BA00E065FB /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		CE70B6682C60E78500E065FB /* HealthKitRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitRepository.swift; sourceTree = "<group>"; };
+		CE70B66C2C60EB7B00E065FB /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
+		CE70B66E2C61018E00E065FB /* HealthKitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitStore.swift; sourceTree = "<group>"; };
+		CE70B6702C62409900E065FB /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		CE88BF322C2D9C2C00C6081F /* WaterWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWaveView.swift; sourceTree = "<group>"; };
 		CE88BF342C2DAB8F00C6081F /* WaterDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterDropView.swift; sourceTree = "<group>"; };
 		CE9BD41E2C4AB2B100A40A68 /* MulimeeWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MulimeeWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,6 +206,7 @@
 		CE70B65D2C5FB62800E065FB /* History */ = {
 			isa = PBXGroup;
 			children = (
+				CE70B6672C60E77800E065FB /* Service */,
 				CE70B6602C5FBEF800E065FB /* Model */,
 				CE70B65F2C5FBEF600E065FB /* View */,
 				CE70B65E2C5FBEF300E065FB /* ViewModel */,
@@ -204,6 +217,7 @@
 		CE70B65E2C5FBEF300E065FB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CE70B6632C5FC69500E065FB /* HistoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -212,6 +226,8 @@
 			isa = PBXGroup;
 			children = (
 				CE70B6612C5FBF0100E065FB /* HistoryView.swift */,
+				CE70B6702C62409900E065FB /* ImageButton.swift */,
+				CE70B66C2C60EB7B00E065FB /* HistoryItem.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -219,8 +235,18 @@
 		CE70B6602C5FBEF800E065FB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CE70B6652C60E1BA00E065FB /* History.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CE70B6672C60E77800E065FB /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CE70B6682C60E78500E065FB /* HealthKitRepository.swift */,
+				CE70B66E2C61018E00E065FB /* HealthKitStore.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		CE9BD4192C4AB0A000A40A68 /* App */ = {
@@ -598,17 +624,23 @@
 				CEB3F41D2C392C8E00C86FB8 /* FadeInOutView.swift in Sources */,
 				CEB3F40E2C3912C700C86FB8 /* String+UserDefaultKey.swift in Sources */,
 				CEB3F4132C392BA100C86FB8 /* SplashView.swift in Sources */,
+				CE70B6712C62409900E065FB /* ImageButton.swift in Sources */,
 				CEB3F40C2C39120A00C86FB8 /* UserDefaults+AppGroup.swift in Sources */,
 				CE88BF352C2DAB8F00C6081F /* WaterDropView.swift in Sources */,
 				CEB3F4152C392BD500C86FB8 /* LottieView.swift in Sources */,
 				CE4218BA2C2B14F0005DA37D /* Drink.swift in Sources */,
 				CE88BF332C2D9C2C00C6081F /* WaterWaveView.swift in Sources */,
 				CE14C0FD2C57B99D009932E4 /* Water.swift in Sources */,
+				CE70B6642C5FC69500E065FB /* HistoryViewModel.swift in Sources */,
+				CE70B6692C60E78500E065FB /* HealthKitRepository.swift in Sources */,
+				CE70B6662C60E1BA00E065FB /* History.swift in Sources */,
 				CE14C0E22C53ED37009932E4 /* MulimeeFirestore.swift in Sources */,
 				CEB3F4052C3910DD00C86FB8 /* WaterDropViewModel.swift in Sources */,
+				CE70B66F2C61018E00E065FB /* HealthKitStore.swift in Sources */,
 				CE43FF8C2C3D6FCD00309DE2 /* MainView.swift in Sources */,
 				CE9BD4402C4AC7D600A40A68 /* MulimeeIntent.swift in Sources */,
 				CE70B6622C5FBF0100E065FB /* HistoryView.swift in Sources */,
+				CE70B66D2C60EB7B00E065FB /* HistoryItem.swift in Sources */,
 				CEDDD5CF2C513F79008D8CE4 /* AppDelegate.swift in Sources */,
 				CEB3F40A2C39112100C86FB8 /* DrinkRepository.swift in Sources */,
 			);
@@ -841,6 +873,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "귀하의 수분 섭취량을 표시하기 위해 건강 데이터에 접근할 필요가 있습니다.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "귀하의 수분 섭취량을 기록하기 위해 건강 데이터에 접근할 필요가 있습니다.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -880,6 +914,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "귀하의 수분 섭취량을 표시하기 위해 건강 데이터에 접근할 필요가 있습니다.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "귀하의 수분 섭취량을 기록하기 위해 건강 데이터에 접근할 필요가 있습니다.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
