@@ -23,7 +23,6 @@ final class DrinkViewModel: ObservableObject {
     var drinkButtonTitle: String {
         isDisabledDrinkButton ? "다마심" : "마시기"
     }
-    private let healthKitRepository: HealthKitRepository = HealthKitService()
     private var cancellables = Set<AnyCancellable>()
     
     var consumedLiters: Double {
@@ -64,7 +63,6 @@ final class DrinkViewModel: ObservableObject {
     func drinkWater() async {
         do {
             try await drink.drinkWater()
-            try await healthKitRepository.drinkAGlassOfWater()
         } catch {
             drink.restore()
             showAlert.toggle()
@@ -74,7 +72,6 @@ final class DrinkViewModel: ObservableObject {
     func reset() async {
         do {
             try await drink.reset()
-            try await healthKitRepository.resetWaterInTakeInToday()
         } catch {
             print(error.localizedDescription)
             showAlert.toggle()

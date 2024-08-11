@@ -9,7 +9,8 @@ import Combine
 import Foundation
 
 final class Drink {
-    private let repository: DrinkRepository
+    private let drinkRepository: DrinkRepository
+    private let healthKitRepository: HealthKitRepository = HealthKitService()
     
     private let numberOfGlassesSubject: CurrentValueSubject<Int, Never>
     var numberOfGlasses: AnyPublisher<Int, Never> {
@@ -27,7 +28,7 @@ final class Drink {
     }
     
     init(repository: DrinkRepository) {
-        self.repository = repository
+        self.drinkRepository = repository
         self.numberOfGlassesSubject = .init(0)
         
         Task {
@@ -50,15 +51,17 @@ final class Drink {
             return
         }
         numberOfGlassesSubject.send(glasses + 1)
-        try await repository.setDrink()
+        try await drinkRepository.setDrink()
+        try await healthKitRepository.drinkAGlassOfWater()
     }
     
     func reset() async throws {
-        try await repository.reset()
+        try await drinkRepository.reset()
+        try await healthKitRepository.resetWaterInTakeInToday()
     }
     
     private func bind() async {
-        repository.glassPublisher
+        drinkRepository.glassPublisher
             .sink { completion in
                 switch completion {
                 case .failure(let error):
