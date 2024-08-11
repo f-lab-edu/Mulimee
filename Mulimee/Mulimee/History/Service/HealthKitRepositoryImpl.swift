@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class HealthKitService: HealthKitRepository {
+final class HealthKitRepositoryImpl: HealthKitRepository {
     private let healthKitStore = HealthKitStore()
     
     var healthKitAuthorizationStatus: HealthKitAuthorizationStatus {

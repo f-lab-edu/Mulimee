@@ -10,7 +10,7 @@ import Foundation
 
 final class Drink {
     private let drinkRepository: DrinkRepository
-    private let healthKitRepository: HealthKitRepository = HealthKitService()
+    private let healthKitRepository: HealthKitRepository = HealthKitRepositoryImpl()
     
     private let numberOfGlassesSubject: CurrentValueSubject<Int, Never>
     var numberOfGlasses: AnyPublisher<Int, Never> {
