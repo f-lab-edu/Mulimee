@@ -12,7 +12,7 @@ struct MulimeeIntent: AppIntent {
     static var description = IntentDescription("Glasses of Today counter")
     
     func perform() async throws -> some IntentResult {
-        try await DrinkService().setDrink()
+        try await DrinkRepositoryImpl().setDrink()
         return .result()
     }
 }

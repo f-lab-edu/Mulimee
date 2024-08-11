@@ -1,5 +1,5 @@
 //
-//  DrinkService.swift
+//  DrinkRepositoryImpl.swift
 //  Mulimee
 //
 //  Created by Kyeongmo Yang on 8/11/24.
@@ -9,7 +9,7 @@ import Combine
 import Foundation
 import WidgetKit
 
-final class DrinkService: DrinkRepository {
+final class DrinkRepositoryImpl: DrinkRepository {
     private let mulimeeFirestore = MulimeeFirestore()
     
     var glassPublisher: AnyPublisher<Water, any Error> {
