@@ -22,9 +22,23 @@ struct MainView: View {
                     }
                 }
         } else {
-            DrinkView()
-                .environmentObject(DrinkViewModel(drink: drink))
-                .transition(.opacity)
+            TabView {
+                DrinkView()
+                    .environmentObject(DrinkViewModel(drink: drink))
+                    .transition(.opacity)
+                    .tabItem {
+                        Image(systemName: "drop")
+                        Text("수분")
+                    }
+                
+                HistoryView(viewModel: .init())
+                    .tabItem {
+                        Image(systemName: "calendar")
+                        Text("기록")
+                    }
+            }
+            .tint(.teal)
+            .font(.headline)
         }
     }
 }

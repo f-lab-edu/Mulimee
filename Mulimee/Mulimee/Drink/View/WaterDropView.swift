@@ -10,6 +10,7 @@ import SwiftUI
 
 struct WaterDropView: View {
     @EnvironmentObject var viewModel: WaterDropViewModel
+    @State private var hasAnimated = false
     
     var body: some View {
         GeometryReader { proxy in
@@ -57,9 +58,13 @@ struct WaterDropView: View {
             }
             .frame(width: size.width, height: size.height, alignment: .center)
             .onAppear {
+                guard !hasAnimated else {
+                    return
+                }
                 withAnimation(.linear(duration: 2.0).repeatForever(autoreverses: false)) {
                     viewModel.startAnimation()
                 }
+                hasAnimated.toggle()
             }
         }
         .frame(height: 450)

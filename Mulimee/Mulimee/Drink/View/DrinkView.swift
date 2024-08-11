@@ -13,7 +13,7 @@ struct DrinkView: View {
     var body: some View {
         ZStack {
             Color(.fogMist)
-                .ignoresSafeArea()
+                .ignoresSafeArea(edges: [.top])
             VStack {
                 ZStack {
                     WaterDropView()
