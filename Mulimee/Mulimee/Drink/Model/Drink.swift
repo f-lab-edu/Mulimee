@@ -81,4 +81,3 @@ final class Drink {
         numberOfGlassesSubject.send(glasses - 1)
     }
 }
-
