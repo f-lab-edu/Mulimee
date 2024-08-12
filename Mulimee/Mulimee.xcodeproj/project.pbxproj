@@ -29,6 +29,7 @@
 		CE6AC19A2C68E55E00FF2174 /* DrinkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F4092C39112100C86FB8 /* DrinkRepository.swift */; };
 		CE6AC19B2C68E56400FF2174 /* HealthKitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6682C60E78500E065FB /* HealthKitRepository.swift */; };
 		CE6AC19C2C68E56600FF2174 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
+		CE6AC1A52C6A2A6500FF2174 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CE6AC1A42C6A2A6500FF2174 /* ComposableArchitecture */; };
 		CE70B6622C5FBF0100E065FB /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6612C5FBF0100E065FB /* HistoryView.swift */; };
 		CE70B6642C5FC69500E065FB /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6632C5FC69500E065FB /* HistoryViewModel.swift */; };
 		CE70B6662C60E1BA00E065FB /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
@@ -180,6 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE6AC1A52C6A2A6500FF2174 /* ComposableArchitecture in Frameworks */,
 				CEDDD5D42C5140AC008D8CE4 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				CE43FF8F2C3D725700309DE2 /* Lottie in Frameworks */,
 				CEDDD5D22C5140AC008D8CE4 /* FirebaseFirestore in Frameworks */,
@@ -479,6 +481,7 @@
 				CEDDD5D12C5140AC008D8CE4 /* FirebaseFirestore */,
 				CEDDD5D32C5140AC008D8CE4 /* FirebaseFirestoreCombine-Community */,
 				CEDDD5D52C5140AC008D8CE4 /* FirebaseFirestoreSwift */,
+				CE6AC1A42C6A2A6500FF2174 /* ComposableArchitecture */,
 			);
 			productName = Mulimee;
 			productReference = CE9D49842C232A3C005021CF /* Mulimee.app */;
@@ -557,6 +560,7 @@
 			packageReferences = (
 				CE43FF8D2C3D725700309DE2 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				CEDDD5D02C5140AC008D8CE4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CE6AC1A32C6A2A6500FF2174 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = CE9D49852C232A3C005021CF /* Products */;
 			projectDirPath = "";
@@ -1112,6 +1116,14 @@
 				minimumVersion = 4.4.3;
 			};
 		};
+		CE6AC1A32C6A2A6500FF2174 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.12.1;
+			};
+		};
 		CEDDD5D02C5140AC008D8CE4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -1142,6 +1154,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE43FF8D2C3D725700309DE2 /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
+		};
+		CE6AC1A42C6A2A6500FF2174 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE6AC1A32C6A2A6500FF2174 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
 		};
 		CEDDD5D12C5140AC008D8CE4 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
