@@ -5,15 +5,17 @@
 //  Created by Kyeongmo Yang on 6/20/24.
 //
 
+import ComposableArchitecture
 import SwiftUI
 
 @main
 struct MulimeeApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
     var body: some Scene {
         WindowGroup {
-            MainView()
+            DrinkWaterView(store: Store(initialState: DrinkWaterFeature.State()) {
+                DrinkWaterFeature()
+                    ._printChanges()
+            })
         }
     }
 }

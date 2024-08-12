@@ -30,6 +30,7 @@
 		CE6AC19B2C68E56400FF2174 /* HealthKitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6682C60E78500E065FB /* HealthKitRepository.swift */; };
 		CE6AC19C2C68E56600FF2174 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
 		CE6AC1A52C6A2A6500FF2174 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CE6AC1A42C6A2A6500FF2174 /* ComposableArchitecture */; };
+		CE6AC1A72C6A2D0F00FF2174 /* DrinkWaterFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AC1A62C6A2D0F00FF2174 /* DrinkWaterFeature.swift */; };
 		CE70B6622C5FBF0100E065FB /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6612C5FBF0100E065FB /* HistoryView.swift */; };
 		CE70B6642C5FC69500E065FB /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6632C5FC69500E065FB /* HistoryViewModel.swift */; };
 		CE70B6662C60E1BA00E065FB /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70B6652C60E1BA00E065FB /* History.swift */; };
@@ -121,6 +122,7 @@
 		CE43FF8B2C3D6FCD00309DE2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CE4A18EE2C301CAA007D2279 /* GlareCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlareCircleView.swift; sourceTree = "<group>"; };
 		CE6AC1942C68E52900FF2174 /* HealthKitAuthorizationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitAuthorizationStatus.swift; sourceTree = "<group>"; };
+		CE6AC1A62C6A2D0F00FF2174 /* DrinkWaterFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkWaterFeature.swift; sourceTree = "<group>"; };
 		CE70B6612C5FBF0100E065FB /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		CE70B6632C5FC69500E065FB /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		CE70B6652C60E1BA00E065FB /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				CEB3F4062C3910E500C86FB8 /* Model */,
 				CEB3F4072C3910F400C86FB8 /* View */,
 				CEB3F4082C3910FC00C86FB8 /* ViewModel */,
+				CE6AC1A62C6A2D0F00FF2174 /* DrinkWaterFeature.swift */,
 			);
 			path = Drink;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 				CEB3F40C2C39120A00C86FB8 /* UserDefaults+AppGroup.swift in Sources */,
 				CE88BF352C2DAB8F00C6081F /* WaterDropView.swift in Sources */,
 				CEB3F4152C392BD500C86FB8 /* LottieView.swift in Sources */,
+				CE6AC1A72C6A2D0F00FF2174 /* DrinkWaterFeature.swift in Sources */,
 				CE4218BA2C2B14F0005DA37D /* Drink.swift in Sources */,
 				CE88BF332C2D9C2C00C6081F /* WaterWaveView.swift in Sources */,
 				CE14C0FD2C57B99D009932E4 /* Water.swift in Sources */,

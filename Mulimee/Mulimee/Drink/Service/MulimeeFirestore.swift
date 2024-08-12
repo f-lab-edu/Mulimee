@@ -22,16 +22,12 @@ final class MulimeeFirestore: Sendable {
         return df
     }()
     
-    func isExistDocument(userId: String) async -> Bool {
+    func isExistDocument(userId: String) async throws -> Bool {
         let collectionPath = "\(Constant.drink)/\(userId)/\(Constant.water)"
         let collectionListner = Firestore.firestore().collection(collectionPath)
         let documentPath = dateFormatter.string(from: .now)
         
-        do {
-            return try await collectionListner.document(documentPath).getDocument().exists
-        } catch {
-            return false
-        }
+        return try await collectionListner.document(documentPath).getDocument().exists
     }
     
     func createDocument(userId: String) async throws {
