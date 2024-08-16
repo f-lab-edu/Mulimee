@@ -12,8 +12,8 @@ import SwiftUI
 struct MulimeeApp: App {
     var body: some Scene {
         WindowGroup {
-            DrinkWaterView(store: Store(initialState: DrinkWaterFeature.State()) {
-                DrinkWaterFeature()
+            DrinkWaterView(store: Store(initialState: DrinkWater.State()) {
+                DrinkWater()
                     ._printChanges()
             })
         }

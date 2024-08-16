@@ -1,5 +1,5 @@
 //
-//  DrinkWaterFeature.swift
+//  DrinkWater.swift
 //  Mulimee
 //
 //  Created by Kyeongmo Yang on 8/12/24.
@@ -10,11 +10,12 @@ import Dependencies
 import SwiftUI
 
 @Reducer
-struct DrinkWaterFeature {
+struct DrinkWater {
     @ObservableState
     struct State {
         var numberOfGlasses = 0
         var offset: CGFloat = 0
+        var errorMessage = ""
         
         var glassString: String {
             "\(numberOfGlasses)잔"
@@ -47,6 +48,7 @@ struct DrinkWaterFeature {
         case drinkWater
         case resetButtonTapped
         case startAnimation
+        case receivedError(DrinkWaterError)
     }
     
     @Dependency(\.drinkWaterClient) var drinkWaterClient
@@ -84,13 +86,21 @@ struct DrinkWaterFeature {
             case .startAnimation:
                 state.offset = 360
                 return .none
+                
+            case let .receivedError(drinkWaterError):
+                switch drinkWaterError {
+                case .failedFetchNumberOfGlasses:
+                    state.errorMessage = "문제가 발생했어요!"
+                }
+                
+                return .none
             }
         }
     }
 }
 
 struct DrinkWaterView: View {
-    let store: StoreOf<DrinkWaterFeature>
+    @Bindable var store: StoreOf<DrinkWater>
     
     var body: some View {
         ZStack {
@@ -192,6 +202,10 @@ struct DrinkWaterView: View {
     }
 }
 
+enum DrinkWaterError: Error {
+    case failedFetchNumberOfGlasses
+}
+
 @DependencyClient
 struct DrinkWaterClient {
     var fetchNumberOfGlasses: @Sendable () -> Int = { 0 }
@@ -233,7 +247,7 @@ extension DependencyValues {
 }
 
 #Preview {
-    DrinkWaterView(store: Store(initialState: DrinkWaterFeature.State()) {
-        DrinkWaterFeature()
+    DrinkWaterView(store: Store(initialState: DrinkWater.State()) {
+        DrinkWater()
     })
 }
