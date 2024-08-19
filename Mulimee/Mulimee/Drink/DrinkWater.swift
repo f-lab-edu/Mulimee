@@ -43,10 +43,12 @@ struct DrinkWater {
     
     enum Action {
         case onAppear
+        case documentCreated
         case fetchNumberOfGlasses(Int)
         case drinkButtonTapped
-        case drinkWater
+        case incrementDrinkWater
         case resetButtonTapped
+        case resetDrinkWater
         case startAnimation
         case receivedError(DrinkWaterError)
     }
@@ -58,8 +60,26 @@ struct DrinkWater {
             switch action {
             case .onAppear:
                 return .run { send in
-                    let numberOfGlasses = self.drinkWaterClient.fetchNumberOfGlasses()
-                    await send(.fetchNumberOfGlasses(numberOfGlasses))
+                    do {
+                        guard try await self.drinkWaterClient.isExistDocument() else {
+                            return await send(.documentCreated)
+                        }
+                        
+                        let numberOfGlasses = try await self.drinkWaterClient.fetchNumberOfGlasses()
+                        await send(.fetchNumberOfGlasses(numberOfGlasses))
+                    } catch {
+                        await send(.receivedError(.failedFetchNumberOfGlasses))
+                    }
+                }
+                
+            case .documentCreated:
+                return .run { send in
+                    do {
+                        try await self.drinkWaterClient.createDocument()
+                        await send(.onAppear)
+                    } catch {
+                        await send(.receivedError(.failedCreatedDocument))
+                    }
                 }
                 
             case let .fetchNumberOfGlasses(numberOfGlasses):
@@ -71,16 +91,30 @@ struct DrinkWater {
                     return .none
                 }
                 return .run { send in
-                    self.drinkWaterClient.drinkWater()
-                    await send(.drinkWater)
+                    do {
+                        try await self.drinkWaterClient.drinkWater()
+                        await send(.incrementDrinkWater)
+                    } catch {
+                        await send(.receivedError(.failedIncrementDrinkWater))
+                    }
                 }
                 
-            case .drinkWater:
+            case .incrementDrinkWater:
                 state.numberOfGlasses += 1
                 return .none
                 
             case .resetButtonTapped:
-                state.numberOfGlasses = .zero
+                return .run { send in
+                    do {
+                        try await self.drinkWaterClient.reset()
+                        await send(.resetDrinkWater)
+                    } catch {
+                        await send(.receivedError(.failedResetDrinkWater))
+                    }
+                }
+                
+            case .resetDrinkWater:
+                state.numberOfGlasses = 0
                 return .none
                 
             case .startAnimation:
@@ -90,6 +124,15 @@ struct DrinkWater {
             case let .receivedError(drinkWaterError):
                 switch drinkWaterError {
                 case .failedFetchNumberOfGlasses:
+                    state.errorMessage = "문제가 발생했어요!"
+                    
+                case .failedCreatedDocument:
+                    state.errorMessage = "문제가 발생했어요!"
+                    
+                case .failedIncrementDrinkWater:
+                    state.errorMessage = "문제가 발생했어요!"
+                    
+                case .failedResetDrinkWater:
                     state.errorMessage = "문제가 발생했어요!"
                 }
                 
@@ -152,13 +195,6 @@ struct DrinkWaterView: View {
                         }
                     }
                     .frame(width: size.width, height: size.height, alignment: .center)
-                    .onAppear {
-                        store.send(.onAppear)
-                        
-                        withAnimation(.linear(duration: 2.0).repeatForever(autoreverses: false)) { () -> Void in
-                            store.send(.startAnimation)
-                        }
-                    }
                 }
                 .frame(height: 450)
                 
@@ -199,22 +235,40 @@ struct DrinkWaterView: View {
                 }
             }
         }
+        .onAppear {
+            store.send(.onAppear)
+            
+            withAnimation(.linear(duration: 2.0).repeatForever(autoreverses: false)) { () -> Void in
+                store.send(.startAnimation)
+            }
+        }
     }
 }
 
 enum DrinkWaterError: Error {
+    case failedCreatedDocument
     case failedFetchNumberOfGlasses
+    case failedIncrementDrinkWater
+    case failedResetDrinkWater
 }
 
 @DependencyClient
 struct DrinkWaterClient {
-    var fetchNumberOfGlasses: @Sendable () -> Int = { 0 }
-    var drinkWater: @Sendable () -> Void
-    var reset: @Sendable () -> Void
+    var isExistDocument: @Sendable () async throws -> Bool = { false }
+    var createDocument: @Sendable () async throws -> Void
+    var fetchNumberOfGlasses: @Sendable () async throws -> Int = { 0 }
+    var drinkWater: @Sendable () async throws -> Void
+    var reset: @Sendable () async throws -> Void
 }
 
 extension DrinkWaterClient: TestDependencyKey {
     static var previewValue = Self(
+        isExistDocument: {
+            true
+        }, 
+        createDocument: {
+            return
+        },
         fetchNumberOfGlasses : {
             0
         },
@@ -228,13 +282,19 @@ extension DrinkWaterClient: TestDependencyKey {
 
 extension DrinkWaterClient: DependencyKey {
     static let liveValue = Self(
+        isExistDocument: {
+            try await MulimeeFirestore().isExistDocument(userId: "1")
+        }, 
+        createDocument: {
+            try await MulimeeFirestore().createDocument(userId: "1")
+        },
         fetchNumberOfGlasses: {
-            UserDefaults.appGroup.glassesOfToday
+            try await MulimeeFirestore().fetch(userId: "1").glasses
         },
         drinkWater: {
-            UserDefaults.appGroup.glassesOfToday += 1
+            try await MulimeeFirestore().drink(userId: "1")
         }, reset: {
-            UserDefaults.appGroup.glassesOfToday = .zero
+            try await MulimeeFirestore().reset(userId: "1")
         }
     )
 }

@@ -10,6 +10,8 @@ import SwiftUI
 
 @main
 struct MulimeeApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     var body: some Scene {
         WindowGroup {
             DrinkWaterView(store: Store(initialState: DrinkWater.State()) {
