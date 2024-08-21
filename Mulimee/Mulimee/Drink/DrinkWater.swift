@@ -15,6 +15,7 @@ struct DrinkWater {
     @ObservableState
     struct State {
         var numberOfGlasses = 0
+        var prevNumberOfGlasses = 0
         var offset: CGFloat = 0
         var errorMessage = ""
         
@@ -47,7 +48,9 @@ struct DrinkWater {
         case createDocument
         case receivedWater(Water)
         case drinkButtonTapped
+        case incrementNumberOfGlasses
         case resetButtonTapped
+        case resetNumberOfGlasses
         case startAnimation
         case receivedError(DrinkWaterError)
     }
@@ -84,22 +87,37 @@ struct DrinkWater {
                 guard state.numberOfGlasses < 8 else {
                     return .none
                 }
-                return .run { send in
-                    do {
-                        try await self.drinkWaterClient.drinkWater("1")
-                    } catch {
-                        await send(.receivedError(.failedIncrementDrinkWater))
+                return .concatenate(
+                    .send(.incrementNumberOfGlasses),
+                    .run { send in
+                        do {
+                            try await self.drinkWaterClient.drinkWater("1")
+                        } catch {
+                            await send(.receivedError(.failedIncrementDrinkWater))
+                        }
                     }
-                }
+                )
+                
+            case .incrementNumberOfGlasses:
+                state.numberOfGlasses += 1
+                return .none
                 
             case .resetButtonTapped:
-                return .run { send in
-                    do {
-                        try await self.drinkWaterClient.reset("1")
-                    } catch {
-                        await send(.receivedError(.failedResetDrinkWater))
+                return .concatenate(
+                    .send(.resetNumberOfGlasses),
+                    .run { send in
+                        do {
+                            try await self.drinkWaterClient.reset("1")
+                        } catch {
+                            await send(.receivedError(.failedResetDrinkWater))
+                        }
                     }
-                }
+                )
+                
+            case .resetNumberOfGlasses:
+                state.prevNumberOfGlasses = state.numberOfGlasses
+                state.numberOfGlasses = 0
+                return .none
                 
             case .startAnimation:
                 state.offset = 360
@@ -107,18 +125,16 @@ struct DrinkWater {
                 
             case let .receivedError(drinkWaterError):
                 switch drinkWaterError {
-                case .failedFetchNumberOfGlasses:
-                    state.errorMessage = "문제가 발생했어요!"
-                    return .none
-                    
                 case .isNotExistDocument:
                     return .send(.createDocument)
                     
                 case .failedIncrementDrinkWater:
+                    state.numberOfGlasses -= 1
                     state.errorMessage = "문제가 발생했어요!"
                     return .none
                     
                 case .failedResetDrinkWater:
+                    state.numberOfGlasses = state.prevNumberOfGlasses
                     state.errorMessage = "문제가 발생했어요!"
                     return .none
                 }
@@ -232,7 +248,6 @@ struct DrinkWaterView: View {
 
 enum DrinkWaterError: Error {
     case isNotExistDocument
-    case failedFetchNumberOfGlasses
     case failedIncrementDrinkWater
     case failedResetDrinkWater
 }
