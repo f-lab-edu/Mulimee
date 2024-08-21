@@ -5,6 +5,7 @@
 //  Created by Kyeongmo Yang on 8/12/24.
 //
 
+import Combine
 import ComposableArchitecture
 import Dependencies
 import SwiftUI
@@ -42,13 +43,11 @@ struct DrinkWater {
     }
     
     enum Action {
-        case onAppear
-        case documentCreated
-        case fetchNumberOfGlasses(Int)
+        case subscribeWater
+        case createDocument
+        case receivedWater(Water)
         case drinkButtonTapped
-        case incrementDrinkWater
         case resetButtonTapped
-        case resetDrinkWater
         case startAnimation
         case receivedError(DrinkWaterError)
     }
@@ -58,32 +57,27 @@ struct DrinkWater {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .onAppear:
-                return .run { send in
-                    do {
-                        guard try await self.drinkWaterClient.isExistDocument() else {
-                            return await send(.documentCreated)
+            case .subscribeWater:
+                return .publisher {
+                    self.drinkWaterClient.water(id: "1")
+                        .map {
+                            switch $0 {
+                            case let .success(water):
+                                .receivedWater(water)
+                            case let .failure(error):
+                                .receivedError(error)
+                            }
                         }
-                        
-                        let numberOfGlasses = try await self.drinkWaterClient.fetchNumberOfGlasses()
-                        await send(.fetchNumberOfGlasses(numberOfGlasses))
-                    } catch {
-                        await send(.receivedError(.failedFetchNumberOfGlasses))
-                    }
                 }
                 
-            case .documentCreated:
+            case .createDocument:
                 return .run { send in
-                    do {
-                        try await self.drinkWaterClient.createDocument()
-                        await send(.onAppear)
-                    } catch {
-                        await send(.receivedError(.failedCreatedDocument))
-                    }
+                    try await self.drinkWaterClient.createDocument("1")
+                    await send(.subscribeWater)
                 }
                 
-            case let .fetchNumberOfGlasses(numberOfGlasses):
-                state.numberOfGlasses = numberOfGlasses
+            case let .receivedWater(water):
+                state.numberOfGlasses = water.glasses
                 return .none
                 
             case .drinkButtonTapped:
@@ -92,30 +86,20 @@ struct DrinkWater {
                 }
                 return .run { send in
                     do {
-                        try await self.drinkWaterClient.drinkWater()
-                        await send(.incrementDrinkWater)
+                        try await self.drinkWaterClient.drinkWater("1")
                     } catch {
                         await send(.receivedError(.failedIncrementDrinkWater))
                     }
                 }
                 
-            case .incrementDrinkWater:
-                state.numberOfGlasses += 1
-                return .none
-                
             case .resetButtonTapped:
                 return .run { send in
                     do {
-                        try await self.drinkWaterClient.reset()
-                        await send(.resetDrinkWater)
+                        try await self.drinkWaterClient.reset("1")
                     } catch {
                         await send(.receivedError(.failedResetDrinkWater))
                     }
                 }
-                
-            case .resetDrinkWater:
-                state.numberOfGlasses = 0
-                return .none
                 
             case .startAnimation:
                 state.offset = 360
@@ -125,18 +109,19 @@ struct DrinkWater {
                 switch drinkWaterError {
                 case .failedFetchNumberOfGlasses:
                     state.errorMessage = "문제가 발생했어요!"
+                    return .none
                     
-                case .failedCreatedDocument:
-                    state.errorMessage = "문제가 발생했어요!"
+                case .isNotExistDocument:
+                    return .send(.createDocument)
                     
                 case .failedIncrementDrinkWater:
                     state.errorMessage = "문제가 발생했어요!"
+                    return .none
                     
                 case .failedResetDrinkWater:
                     state.errorMessage = "문제가 발생했어요!"
+                    return .none
                 }
-                
-                return .none
             }
         }
     }
@@ -236,7 +221,7 @@ struct DrinkWaterView: View {
             }
         }
         .onAppear {
-            store.send(.onAppear)
+            store.send(.subscribeWater)
             
             withAnimation(.linear(duration: 2.0).repeatForever(autoreverses: false)) { () -> Void in
                 store.send(.startAnimation)
@@ -246,7 +231,7 @@ struct DrinkWaterView: View {
 }
 
 enum DrinkWaterError: Error {
-    case failedCreatedDocument
+    case isNotExistDocument
     case failedFetchNumberOfGlasses
     case failedIncrementDrinkWater
     case failedResetDrinkWater
@@ -254,27 +239,27 @@ enum DrinkWaterError: Error {
 
 @DependencyClient
 struct DrinkWaterClient {
-    var isExistDocument: @Sendable () async throws -> Bool = { false }
-    var createDocument: @Sendable () async throws -> Void
-    var fetchNumberOfGlasses: @Sendable () async throws -> Int = { 0 }
-    var drinkWater: @Sendable () async throws -> Void
-    var reset: @Sendable () async throws -> Void
+    var water: @Sendable (_ id: String) -> AnyPublisher<Result<Water, DrinkWaterError>, Never> = { _ in
+        CurrentValueSubject(.success(.init(glasses: 0)))
+            .eraseToAnyPublisher()
+    }
+    var createDocument: @Sendable (_ id: String) async throws -> Void
+    var drinkWater: @Sendable (_ id: String) async throws -> Void
+    var reset: @Sendable (_ id: String) async throws -> Void
 }
 
 extension DrinkWaterClient: TestDependencyKey {
     static var previewValue = Self(
-        isExistDocument: {
-            true
-        }, 
-        createDocument: {
+        water: { _ in
+            CurrentValueSubject(.success(.init(glasses: 0)))
+                .eraseToAnyPublisher()
+        },
+        createDocument: { _ in
             return
         },
-        fetchNumberOfGlasses : {
-            0
-        },
-        drinkWater: {
+        drinkWater: { _ in
             return
-        }, reset: {
+        }, reset: { _ in
             return
         }
     )
@@ -282,19 +267,21 @@ extension DrinkWaterClient: TestDependencyKey {
 
 extension DrinkWaterClient: DependencyKey {
     static let liveValue = Self(
-        isExistDocument: {
-            try await MulimeeFirestore().isExistDocument(userId: "1")
-        }, 
-        createDocument: {
-            try await MulimeeFirestore().createDocument(userId: "1")
+        water: { id in
+            MulimeeFirestore().documentPublisher(userId: id)
+                .map { .success($0) }
+                .catch { _ in
+                    Just(.failure(DrinkWaterError.isNotExistDocument))
+                }
+                .eraseToAnyPublisher()
         },
-        fetchNumberOfGlasses: {
-            try await MulimeeFirestore().fetch(userId: "1").glasses
+        createDocument: { id in
+            try await MulimeeFirestore().createDocument(userId: id)
         },
-        drinkWater: {
-            try await MulimeeFirestore().drink(userId: "1")
-        }, reset: {
-            try await MulimeeFirestore().reset(userId: "1")
+        drinkWater: { id in
+            try await MulimeeFirestore().drink(userId: id)
+        }, reset: { id in
+            try await MulimeeFirestore().reset(userId: id)
         }
     )
 }
