@@ -28,7 +28,11 @@ final class DrinkRepositoryService: DrinkRepository {
     
     var isExistDocument: Bool {
         get async {
-            await mulimeeFirestore.isExistDocument(userId: "1")
+            do {
+                return try await mulimeeFirestore.isExistDocument(userId: "1")
+            } catch {
+                return false
+            }
         }
     }
     
