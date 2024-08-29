@@ -14,7 +14,7 @@ struct DrinkWaterView: View {
     var body: some View {
         ZStack {
             Color(.fogMist)
-                .ignoresSafeArea()
+                .ignoresSafeArea(edges: [.top, .horizontal])
             
             VStack {
                 GeometryReader { proxy in
