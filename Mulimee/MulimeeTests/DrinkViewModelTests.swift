@@ -33,9 +33,18 @@ final class DrinkViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Drink water")
         expectation.expectedFulfillmentCount = 1
         
+        viewModel.$numberOfGlasses
+            .dropFirst() // Skip the initial value
+            .sink { newValue in
+                if newValue == 1 {
+                    expectation.fulfill()
+                }
+            }
+            .store(in: &cancellables)
+        
         // When
         await viewModel.drinkWater()
-        expectation.fulfill()
+        
         
         // Then
         await fulfillment(of: [expectation], timeout: 1.0)
@@ -51,10 +60,15 @@ final class DrinkViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Drink water max limit")
         expectation.expectedFulfillmentCount = 8
         
+        viewModel.$numberOfGlasses
+            .sink { newValue in
+                expectation.fulfill()
+            }
+            .store(in: &cancellables)
+        
         // When
-        for _ in 0..<7 {
+        for _ in 0..<8 {
             await viewModel.drinkWater()
-            expectation.fulfill()
         }
         
         // Then
@@ -68,12 +82,22 @@ final class DrinkViewModelTests: XCTestCase {
     func testReset() async {
         // Given
         viewModel = DrinkViewModel(drink: drink)
+        let expectation = XCTestExpectation(description: "Reset")
+        expectation.expectedFulfillmentCount = 2
+        
+        viewModel.$numberOfGlasses
+            .dropFirst() // Skip the initial value
+            .sink { newValue in
+                expectation.fulfill()
+            }
+            .store(in: &cancellables)
         
         // When
         await viewModel.drinkWater()
         await viewModel.reset()
         
         // Then
+        await fulfillment(of: [expectation], timeout: 1.0)
         XCTAssertEqual(viewModel.numberOfGlasses, 0)
         XCTAssertFalse(viewModel.isDisabledDrinkButton)
         XCTAssertEqual(viewModel.drinkButtonBackgroundColor, .teal)
@@ -82,7 +106,15 @@ final class DrinkViewModelTests: XCTestCase {
     
     func testConsumedLiters() async {
         // Given
-        await viewModel.drinkWater()
+        viewModel = DrinkViewModel(drink: drink)
+        let expectation = XCTestExpectation(description: "Consumed Liters")
+        expectation.expectedFulfillmentCount = 4
+        
+        viewModel.$numberOfGlasses
+            .sink { newValue in
+                expectation.fulfill()
+            }
+            .store(in: &cancellables)
         
         // When
         for _ in 0..<4 {
@@ -90,6 +122,7 @@ final class DrinkViewModelTests: XCTestCase {
         }
         
         // Then
+        await fulfillment(of: [expectation], timeout: 1.0)
         XCTAssertEqual(viewModel.consumedLiters, 1.0)
         XCTAssertEqual(viewModel.liter, "1.00L")
     }
