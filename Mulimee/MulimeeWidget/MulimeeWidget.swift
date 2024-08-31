@@ -9,7 +9,7 @@ import SwiftUI
 import WidgetKit
 
 struct Provider: AppIntentTimelineProvider {
-    private let repository: DrinkRepository = DrinkRepositoryService()
+    private let repository: DrinkRepository = DrinkRepositoryImpl()
     
     func placeholder(in context: Context) -> MulimeeEntry {
         MulimeeEntry(date: .now,

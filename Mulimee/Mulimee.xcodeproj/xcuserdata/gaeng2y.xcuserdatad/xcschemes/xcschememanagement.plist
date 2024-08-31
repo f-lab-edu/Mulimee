@@ -9,10 +9,15 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>MulimeeWidgetExtension.xcscheme_^#shared#^_</key>
+		<key>MulimeeTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+		<key>MulimeeWidgetExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>Promises (Playground) 1.xcscheme</key>
 		<dict>
@@ -54,7 +59,30 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>2</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>CE9BD41D2C4AB2B100A40A68</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE9D49832C232A3C005021CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE9D49942C232A3E005021CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE9D499E2C232A3E005021CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
