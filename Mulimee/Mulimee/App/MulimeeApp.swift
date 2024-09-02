@@ -14,9 +14,8 @@ struct MulimeeApp: App {
     
     var body: some Scene {
         WindowGroup {
-            DrinkWaterView(store: Store(initialState: DrinkWater.State()) {
-                DrinkWater()
-                    ._printChanges()
+            RootView(store: .init(initialState: Root.State()) {
+                Root()
             })
         }
     }
